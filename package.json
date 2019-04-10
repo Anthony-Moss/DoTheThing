@@ -19,9 +19,9 @@
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "db:init": "psql -f schema.sql DoTheThing-app && psql -f seed.sql DoTheThing-app",
-    "db:create": "createdb DoTheThing-app",
-    "db:destroy": "dropdb DoTheThing-app",
+    "db:create": "createdb doTheThing-app",
+    "db:init": "psql -f schema.sql doTheThing-app && psql -f seed.sql doTheThing-app",
+    "db:destroy": "dropdb doTheThing-app",
     "db:reset": "npm run db:destroy; npm run db:create && npm run db:init",
     "test": "mocha"
   },
