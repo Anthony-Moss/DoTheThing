@@ -1,6 +1,5 @@
 // Bring in the databse connection.
 const db = require("./conn");
-const Review = require("./reviews");
 const bcrpyt = require("bcryptjs");
 
 // Need a User class.
@@ -140,4 +139,11 @@ class User {
   //         return arrayOfReviewInstances;
   //       });
 }
+// async function demo() {
+//   const user = await User.getByEmail("am123@me.com");
+//   user.setPassword("waffles");
+//   await user.save();
+//   console.log("you did the thing");
+// }
+// demo();
 module.exports = User;
