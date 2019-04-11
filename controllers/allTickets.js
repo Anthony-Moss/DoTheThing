@@ -1,11 +1,15 @@
 const User = require("../models/user");
+const allTickets = require("../models/allTickets");
 
 async function allTicketsPage(req, res) {
-  const userData = await User.getById(req.session.user);
+  const theUser = await User.getById(req.session.user);
+  const arrayOfTickets = await allTickets.getAll();
 
   res.render("allTickets", {
     locals: {
-      message: "View All Tickets Below!"
+      firtName: theUser.firstName,
+      message: "View All Tickets Below!",
+      tickets: arrayOfTickets
     }
   });
 }
