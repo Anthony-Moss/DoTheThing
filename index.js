@@ -20,9 +20,11 @@ app.use(
 
 const loginRoutes = require("./routes/login");
 const dashboardRoutes = require("./routes/dashboard");
+const allTicketsRoutes = require("./routes/allTickets");
 
 app.use("/login", loginRoutes);
 app.use("/dashboard", dashboardRoutes);
+app.use("/allTickets", allTicketsRoutes);
 
 app.listen(PORT, () => {
   console.log(`server is running at port: ${PORT}`);
