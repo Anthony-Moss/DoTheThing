@@ -1,5 +1,5 @@
 
-const db = require('./conn');
+// const db = require('./conn');
 const User = require("../models/user");
 const openTickets = require("../models/openTickets");
 

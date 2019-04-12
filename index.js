@@ -26,7 +26,7 @@ const openTicketsRoutes = require("./routes/openTickets");
 app.use("/login", loginRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/allTickets", allTicketsRoutes);
-// app.use("/openTickets", openTicketsRoutes);
+app.use("/openTickets", openTicketsRoutes);
 
 app.listen(PORT, () => {
     console.log(`server is running at port: ${PORT}`);
