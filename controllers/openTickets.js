@@ -11,7 +11,7 @@ async function openTicketsPage(req, res) {
     locals: {
       firtName: theUser.firstName,
       message: "View Open Tickets Below!",
-      tickets: arrayOfTickets
+      // tickets: arrayOfTickets
     }
   });
 }

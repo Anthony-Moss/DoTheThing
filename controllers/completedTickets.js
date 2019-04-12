@@ -9,7 +9,7 @@ async function completedTicketsPage(req, res) {
     locals: {
       firtName: theUser.firstName,
       message: "View Completed Tickets Below!",
-      tickets: arrayOfTickets
+      // tickets: arrayOfTickets
     }
   });
 }

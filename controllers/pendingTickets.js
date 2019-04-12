@@ -9,7 +9,7 @@ async function pendingTicketsPage(req, res) {
     locals: {
       firtName: theUser.firstName,
       message: "View Pending Tickets Below!",
-      tickets: arrayOfTickets
+      // tickets: arrayOfTickets
     }
   });
 }

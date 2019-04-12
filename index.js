@@ -9,10 +9,10 @@ const AllTickets = require("./models/allTickets");
 const OpenTickets = require("./models/openTickets");
 app.use(express.urlencoded({ extended: true }));
 app.use(
-  session({
+    session({
     store: new FileStore(), // no options for now
     secret: process.env.SESSION_SECRET
-  })
+    })
 );
 app.engine("html", es6Renderer);
 app.set("view engine", "html");
@@ -26,8 +26,8 @@ const openTicketsRoutes = require("./routes/openTickets");
 app.use("/login", loginRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/allTickets", allTicketsRoutes);
-app.use("/openTickets", openTicketsRoutes);
+// app.use("/openTickets", openTicketsRoutes);
 
 app.listen(PORT, () => {
-  console.log(`server is running at port: ${PORT}`);
+    console.log(`server is running at port: ${PORT}`);
 });
