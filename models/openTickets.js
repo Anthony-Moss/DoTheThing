@@ -15,7 +15,7 @@ class OpenTickets {
   }
 
   static getAll() {
-    return db.any(`select * from open_tickets`).then(arrayOfTickets => {
+    return db.any(`select * from all_tickets`).then(arrayOfTickets => {
       console.log(arrayOfTickets);
       return arrayOfTickets;
     });
