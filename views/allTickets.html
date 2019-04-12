@@ -30,6 +30,7 @@
           <th scope="col">Issue Description</th>
           <th scope="col">Time Posted</th>
           <th scope="col">Details</th>
+          <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
@@ -42,6 +43,17 @@
           <td>${issue.time_posted}</td>
           <td>
             <button type="button" class="btn btn-info">Get Details</button>
+          </td>
+          <td>
+              <div class="dropdown">
+                  <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Status
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Pending</a>
+                    <a class="dropdown-item" href="#">Complete</a>
+                  </div>
+                </div>
           </td>
         `
                   }).join('')
