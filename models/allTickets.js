@@ -4,6 +4,7 @@ const bcrpyt = require("bcryptjs");
 
 // Need a User class.
 // Classes should start with an uppercase letter
+
 class AllTickets {
   constructor(id, issue_desc, time_posted) {
 
@@ -11,9 +12,7 @@ class AllTickets {
     this.issueDesc = issue_desc;
     // this.notes_id = notes_id;
     this.timePosted = time_posted;
-    // this.open_tickets_id = open_tickets_id;
-    // this.pending_tickets_id = pending_tickets_id;
-    // this.completed_tickets_id = completed_tickets_id;
+    this.status 
   }
 
 static getAll() {
@@ -23,6 +22,8 @@ static getAll() {
         return arrayOfTickets
     });
 }
+
+
 }
 
 module.exports = AllTickets;

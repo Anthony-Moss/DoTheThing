@@ -7,15 +7,16 @@ const bcrpyt = require("bcryptjs");
 class OpenTickets {
   constructor(id, open_tickets_id) {
     this.id = id;
-    this.open_tickets_id = open_tickets_id;
+    this.openTicketsId = open_tickets_id;
     // this.notes_id = notes_id;
     //this.timePosted = time_posted;
     // this.pending_tickets_id = pending_tickets_id;
     // this.completed_tickets_id = completed_tickets_id;
   }
 
-  static getAll() {
-    return db.any(`select * from all_tickets`).then(arrayOfTickets => {
+static getAll() {
+  return db.any(`select * from open_tickets`)
+    .then((arrayOfTickets) => {
       console.log(arrayOfTickets);
       return arrayOfTickets;
     });
