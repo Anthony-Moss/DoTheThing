@@ -5,14 +5,33 @@ async function allTicketsPage(req, res) {
   const theUser = await User.getById(req.session.user);
   const arrayOfTickets = await allTickets.getAll();
 
-  res.render("allTickets", {
-    locals: {
-      firtName: theUser.firstName,
-      message: "View All Tickets Below!",
-      tickets: arrayOfTickets
-    }
-  });
+    res.render("allTickets", {
+      locals: {
+        firtName: theUser.firstName,
+        message: "View All Tickets Below!",
+        tickets: arrayOfTickets
+      }
+    });
+
 }
+
+async function submitRequest(req, res) {
+  const theUser = await User.getById(req.session.user);
+  const arrayOfTickets = await allTickets.getAll();
+  await allTickets.newIssueSubmitted(req.body.issue_desc);
+  const newRequests = new allTickets(req.body.issue_desc);
+
+  if(newRequests) {
+    res.render("dashboard", {
+      locals: {
+        message: "Welcome!",
+        firstName: theUser.first_name
+      }
+    });
+  }
+}
+
 module.exports = {
-  allTicketsPage
+  allTicketsPage,
+  submitRequest
 };

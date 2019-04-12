@@ -10,7 +10,7 @@ create table all_tickets (
     id serial primary key,
     issue_desc VARCHAR(500),
     -- notes_id integer references notes,
-    time_posted TIMESTAMP
+    time_posted VARCHAR(500)
     -- open_tickets_id integer references open_tickets,
     -- pending_tickets_id integer references pending_tickets,
     -- completed_tickets_id integer references completed_tickets

@@ -17,12 +17,13 @@
       <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/login">Login</a></li>
-            <li class="breadcrumb-item aria-current="page><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item aria-current="page><a href="/openTickets">Open Tickets</a></li>
   
           </ol>
         </nav>
 
-        
+
     <h1>${message}</h1>
     <table class="table">
       <thead>
@@ -33,21 +34,18 @@
         </tr>
       </thead>
       <tbody>
+          ${
+            join.map((ticket) => {
+              return `
         <tr>
-          <td>test</td>
-          <td>test</td>
-          <td>test</td>
+          <td>${ticket.id}</td>
+          <td>${ticket.issue_desc}</td>
+          <td>${ticket.time_posted}</td>
+          `
+                    }).join('')
+                  }
         </tr>
-        <tr>
-          <th scope="row">test</th>
-          <td>test</td>
-          <td>test</td>
-        </tr>
-        <tr>
-          <th scope="row">test</th>
-          <td>test</td>
-          <td>test</td>
-        </tr>
+    
       </tbody>
     </table>
   </body>

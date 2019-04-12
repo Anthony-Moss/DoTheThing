@@ -11,7 +11,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </head>
   <body>
-    <h1>Welcome</h1>
+    <h1>Welcome back, ${firstName}</h1>
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -32,26 +32,118 @@
     <a class="btn btn-primary" href="/completedTickets" role="button"
       >View Completed Tickets</a>
 
+      <h1>Open Tickets</h1>
 
+      <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">All_tickets Id</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>1</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>2</td>
+              <td>2</td>
+            </tr>
+            
+          </tbody>
+        </table>
+
+
+        <h1>Pending Tickets</h1>
+
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h1>Completed Tickets</h1>
+
+          <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+<!-- WE WILL MOVE THIS REQUEST FORM TO ITS OWN PAGE -->
 
 <h1>Submit Request Below</h1>
 
 
     <form 
-      action="/dashboard" 
+      action="/allTickets" 
       method="POST"
       >
             <div class="form-group">
               <label for="exampleFormControlInput1">Issue</label>
-              <input type="text" name="itemName" class="form-control" id="exampleFormControlInput1" placeholder="Issue">
+              <input type="text" name="issue_desc" class="form-control" id="exampleFormControlInput1" placeholder="Issue">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Floor</label>
-                <input type="text" name="category" class="form-control" id="exampleFormControlInput1" placeholder="Category">
+                <!-- <label for="exampleFormControlInput1">Comments/Time</label>
+                <input type="text" name="time_posted" class="form-control" id="exampleFormControlInput1" placeholder="Category"> -->
               </div>
             <div class="form-group">
-              <label for="exampleFormControlTextarea1">Comments</label>
-              <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
+              
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>

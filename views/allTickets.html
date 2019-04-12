@@ -33,29 +33,20 @@
         </tr>
       </thead>
       <tbody>
+          ${
+            tickets.map((issue) => {
+              return `
         <tr>
-          <th scope="row">${tickets[0].id}</th>
-          <td>${tickets[0].issue_desc}</td>
-          <td>${tickets[0].time_posted}</td>
+          <th scope="row">${issue.id}</th>
+          <td>${issue.issue_desc}</td>
+          <td>${issue.time_posted}</td>
           <td>
             <button type="button" class="btn btn-info">Get Details</button>
           </td>
-        </tr>
-        <tr>
-          <th scope="row">${tickets[1].id}</th>
-          <td>${tickets[1].issue_desc}</td>
-          <td>${tickets[1].time_posted}</td>
-          <td>
-              <button type="button" class="btn btn-info">Get Details</button>
-            </td>
-        </tr>
-        <tr>
-          <th scope="row">${tickets[2].id}</th>
-          <td>${tickets[2].issue_desc}</td>
-          <td>${tickets[2].time_posted}</td>
-          <td>
-              <button type="button" class="btn btn-info">Get Details</button>
-            </td>
+        `
+                  }).join('')
+                }
+            
         </tr>
       </tbody>
     </table>

@@ -6,13 +6,13 @@ const bcrpyt = require("bcryptjs");
 // Classes should start with an uppercase letter
 
 class AllTickets {
-  constructor(id, issue_desc, time_posted) {
+  constructor(id, issue_desc) {
 
     this.id = id;
     this.issueDesc = issue_desc;
     // this.notes_id = notes_id;
-    this.timePosted = time_posted;
-    this.status 
+    // this.TIMESTAMP = TIMESTAMP;
+    // this.status 
   }
 
 static getAll() {
@@ -22,6 +22,18 @@ static getAll() {
         return arrayOfTickets
     });
 }
+
+static newIssueSubmitted(issue_desc) {
+  const timestamp = new Date();
+  const month = timestamp.getMonth() + 1;
+  const realMonth = month.toString();
+  const date = timestamp.getDate().toString();
+  const year = timestamp.getFullYear().toString();
+  const entireDate = `${realMonth}/ ${date}/ ${year}`
+  return db.none(`insert into all_tickets (issue_desc, time_posted)
+                  values ('${issue_desc}', '${entireDate}')`)
+          ;
+      }
 
 
 }

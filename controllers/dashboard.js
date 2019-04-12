@@ -5,7 +5,8 @@ async function loadDashboardPage(req, res) {
 
   res.render("dashboard", {
     locals: {
-      message: "Welcome!"
+      message: "Welcome!",
+      firstName: userData.first_name
     }
   });
 }

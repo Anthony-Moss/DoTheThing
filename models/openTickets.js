@@ -21,6 +21,17 @@ static getAll() {
       return arrayOfTickets;
     });
   }
+
+  static getByAllTicketsId() {
+    return db.any(`select * from open_tickets o inner join all_tickets a on o.all_tickets_id=a.id`)
+    .then((arrayOfOpenTicketsData) => {
+        return arrayOfOpenTicketsData;
+    })
+  }
+
 }
+
+
+
 
 module.exports = OpenTickets;
