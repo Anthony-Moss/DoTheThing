@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Open Tickets</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1>${message}</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Issue Description</th>
+          <th scope="col">Time Posted</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bg-success">${tickets[0].all_tickets_id}</td>
+        </tr>
+        <tr>
+          <th scope="row" class="bg-warning">${tickets[1].id}</th>
+          <td class="bg-warning">${tickets[1].all_tickets_id}</td>
+        </tr>
+        <tr>
+          <th scope="row" class="bg-danger">${tickets[2].id}</th>
+          <td class="bg-danger">${tickets[2].all_tickets_id}</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
