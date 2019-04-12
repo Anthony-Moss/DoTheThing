@@ -5,41 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Ticket Page</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
   </head>
   <body>
     <h1>${message}</h1>
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/login">Login</a></li>
+          <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="/allTickets">All Tickets</a></li>
+        </ol>
+      </nav>
+
+
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">Id</th>
           <th scope="col">Issue Description</th>
           <th scope="col">Time Posted</th>
+          <th scope="col">Details</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th scope="row" class="bg-success">${tickets[0].id}</th>
-          <td class="bg-success">${tickets[0].issue_desc}</td>
-
-          <td class="bg-success">${tickets[0].time_posted}</td>
+          <th scope="row">${tickets[0].id}</th>
+          <td>${tickets[0].issue_desc}</td>
+          <td>${tickets[0].time_posted}</td>
+          <td>
+            <button type="button" class="btn btn-info">Get Details</button>
+          </td>
         </tr>
         <tr>
-          <th scope="row" class="bg-warning">${tickets[1].id}</th>
-          <td class="bg-warning">${tickets[1].issue_desc}</td>
-          <td class="bg-warning">${tickets[1].time_posted}</td>
+          <th scope="row">${tickets[1].id}</th>
+          <td>${tickets[1].issue_desc}</td>
+          <td>${tickets[1].time_posted}</td>
+          <td>
+              <button type="button" class="btn btn-info">Get Details</button>
+            </td>
         </tr>
         <tr>
-          <th scope="row" class="bg-danger">${tickets[2].id}</th>
-          <td class="bg-danger">${tickets[2].issue_desc}</td>
-          <td class="bg-danger">${tickets[2].time_posted}</td>
+          <th scope="row">${tickets[2].id}</th>
+          <td>${tickets[2].issue_desc}</td>
+          <td>${tickets[2].time_posted}</td>
+          <td>
+              <button type="button" class="btn btn-info">Get Details</button>
+            </td>
         </tr>
       </tbody>
     </table>
+
   </body>
 </html>
