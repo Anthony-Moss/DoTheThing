@@ -8,7 +8,7 @@ insert into all_tickets
     VALUES
     ('2nd floor stairwell door does not unlock', '2008-01-01 00:00:01'),
     ('Elavator doors keep opening and closing', '2008-01-01 00:00:01'),
-    ('4th floor coffe machine is broken', '2008-01-01 00:00:01')
+    ('4th floor coffee machine is broken', '2008-01-01 00:00:01')
 ;
 insert into open_tickets
     (all_tickets_id)

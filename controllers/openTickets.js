@@ -1,19 +1,20 @@
+
 const db = require('./conn');
-
 const User = require("../models/user");
-const allTickets = require("../models/allTickets");
+const openTickets = require("../models/openTickets");
 
-async function allTicketsPage(req, res) {
+async function openTicketsPage(req, res) {
   const theUser = await User.getById(req.session.user);
-  const arrayOfTickets = await allTickets.getAll();
+  const arrayOfTickets = await openTickets.getAll();
 
-  res.render("dashboard", {
+  res.render("openTickets", { //could put 'dashboard' here
     locals: {
       firtName: theUser.firstName,
-      message: "View All Tickets Below!",
-      // tickets: arrayOfTickets
+      message: "View Open Tickets Below!",
+      tickets: arrayOfTickets
     }
   });
 }
-
-module.exports = openTicketsPage;
+module.exports = {
+  openTicketsPage
+};
