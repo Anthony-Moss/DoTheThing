@@ -4,7 +4,7 @@ const escapeHtml = require("../utils");
 async function showLogin(req, res) {
   res.render("login", {
     locals: {
-      message: "Please login to go to your dashboard",
+      message: "Please login to go to your dashboard.",
       email: ""
     }
   });
@@ -40,7 +40,7 @@ async function checkLogin(req, res) {
     res.render("login", {
       locals: {
         email: req.body.email,
-        message: "Incorrect email/password. Please try again"
+        message: "Incorrect email/password. Please try again."
       }
     });
   }
