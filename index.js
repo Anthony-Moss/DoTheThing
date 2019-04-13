@@ -25,16 +25,19 @@ const loginRoutes = require("./routes/login");
 const dashboardRoutes = require("./routes/dashboard");
 const allTicketsRoutes = require("./routes/allTickets");
 const openTicketsRoutes = require("./routes/openTickets");
+const detailsRoutes = require("./routes/details");
 
 app.use("/login", loginRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/allTickets", allTicketsRoutes);
 app.use("/openTickets", openTicketsRoutes);
+app.use("/details", detailsRoutes);
 app.use('/', homepageRoutes);
 app.use('/request', requestRoutes)
 
 // THIS LETS US SERVE IMAGES & THE CSS FILE
 app.use('/static', express.static('static'));
+
 
 app.listen(PORT, () => {
     console.log(`server is running at port: ${PORT}`);
