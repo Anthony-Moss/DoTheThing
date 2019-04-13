@@ -36,6 +36,29 @@ static newIssueSubmitted(issue_desc) {
       }
 
 
+// Will probably need to make seperate functions for each open, pending and completed tickets because they are all different so we can get details no matter
+// what status the ticket is in
+static getTicketInfoByIdIfOpen(id) {
+  return db.one(`select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id`)
+  .then((ticketData) => {
+    return ticketData;
+  });
+}
+
+// static getTicketInfoByIdIfPending(id) {
+//   return db.one(`select * from all_tickets a inner join pending_tickets p on a.id = p.all_tickets_id where id = ${id}`)
+//   .then((ticketData) => {
+//     return ticketData;
+//   });
+// }
+
+// static getTicketInfoByIdIfClosed(id) {
+//   return db.one(`select * from all_tickets a inner join closed_tickets c on a.id = c.all_tickets_id where id = ${id}`)
+//   .then((ticketData) => {
+//     return ticketData;
+//   });
+// }
+
 }
 
 module.exports = AllTickets;

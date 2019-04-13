@@ -22,7 +22,7 @@ async function submitRequest(req, res) {
   const newRequests = new allTickets(req.body.issue_desc);
 
   if(newRequests) {
-    res.render("dashboard", {
+    res.render("thankyou", {
       locals: {
         message: "Welcome!",
         firstName: theUser.first_name

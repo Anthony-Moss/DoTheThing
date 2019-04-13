@@ -42,7 +42,9 @@
           <td>${issue.issue_desc}</td>
           <td>${issue.time_posted}</td>
           <td>
-            <button type="button" class="btn btn-info">Get Details</button>
+            <form action="/details/:${issue.id}" method="GET">
+            <button type="submit" value="${issue.id}" class="btn btn-info">Get Details</button>
+            </form>
           </td>
           <td>
               <div class="dropdown">
