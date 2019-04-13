@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <title>Submit a Request</title>
+</head>
+<body>
+
+        <style>
+
+                body {
+                  background-color: #2D2D2D;
+                  margin: 100px;
+                }
+                
+                h1 {
+                  font-family: 'Avenir';
+                  color: orange;
+                }
+          
+                .form-group {
+                  color: white;
+                }
+                
+                .btn {
+                  color: white;
+                  background-color: orange;
+                }
+
+                img {
+                    width: 150px; 
+                    height: 50px;
+                }
+
+                .footer {
+                    position: fixed;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    background-color: #2D2D2D;
+                    color: white;
+                    text-align:right;
+                    margin: 0px 150px 20px 0px;
+                }
+                   
+                </style>
+          
+
+    <h1>Please enter the fields below:</h1>
+
+    <form 
+      action="/allTickets" 
+      method="POST"
+      >
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Issue</label>
+              <input type="text" name="issue_desc" class="form-control" id="exampleFormControlInput1" placeholder="Please describe the issue here">
+            </div>
+            <div class="form-group">
+                <!-- <label for="exampleFormControlInput1">Comments/Time</label>
+                <input type="text" name="time_posted" class="form-control" id="exampleFormControlInput1" placeholder="Category"> -->
+              </div>
+            <div class="form-group">
+              
+              <button type="submit" class="btn">Submit</button>
+            </div>
+          </form>
+
+          <div class="footer">
+                <img src="/static/images/ticket-icon.png">
+                </div>
+
+
+    
+</body>
+</html>
