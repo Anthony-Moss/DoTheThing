@@ -5,9 +5,11 @@ const bcrpyt = require("bcryptjs");
 // Need a User class.
 // Classes should start with an uppercase letter
 class CompletedTickets {
-  constructor(id, completed_tickets_id) {
+  constructor(id, all_tickets_id, users_id, time_ended) {
     this.id = id;
-    this.completed_tickets_id = completed_tickets_id;
+    this.all_tickets_id = all_tickets_id;
+    this.users_id = users_id;
+    this.time_ended = time_ended;
   }
 
   static getAll() {
@@ -19,9 +21,7 @@ class CompletedTickets {
 
   static getByAllTicketsId() {
     return db
-      .any(
-        `select * from completed_tickets o inner join all_tickets a on o.all_tickets_id=a.id`
-      )
+      .any(`select * from completed_tickets`)
       .then(arrayOfCompletedTicketsData => {
         return arrayOfCompletedTicketsData;
       });
