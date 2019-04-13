@@ -7,7 +7,8 @@ const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const AllTickets = require("./models/allTickets");
 const OpenTickets = require("./models/openTickets");
-const pendingTickets = require("./models/pendingTickets");
+const PendingTickets = require("./models/pendingTickets");
+const CompletedTickets = require("./models/completedTickets");
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
@@ -24,12 +25,13 @@ const dashboardRoutes = require("./routes/dashboard");
 const allTicketsRoutes = require("./routes/allTickets");
 const openTicketsRoutes = require("./routes/openTickets");
 const pendingTicketsRoutes = require("./routes/pendingTickets");
-
+const completedTicketsRoutes = require("./routes/completedTickets");
 app.use("/login", loginRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/allTickets", allTicketsRoutes);
 app.use("/openTickets", openTicketsRoutes);
 app.use("/pendingTickets", pendingTickets);
+app.use("/completed", completedTickets);
 
 app.listen(PORT, () => {
   console.log(`server is running at port: ${PORT}`);
