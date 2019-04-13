@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="/styling/homepage.css">
     <title>Do The Thing!</title>
 </head>
 <body>
@@ -28,7 +27,12 @@
     .thing-text {
         font-style: oblique;
         color: orange;
+        transition: letter-spacing 2s;
     }
+    .thing-text:hover {
+        letter-spacing: 10px;
+    }
+
     h4 {
         font-family: 'Avenir';
         text-transform: uppercase;
@@ -39,8 +43,6 @@
     h2 {
         color: white;
         /* border: 2px solid orange; */
-        padding: 30px 50px;
-        margin: 30px;
     }
 
     img {
