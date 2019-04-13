@@ -35,8 +35,8 @@ app.use("/login", loginRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/allTickets", allTicketsRoutes);
 app.use("/openTickets", openTicketsRoutes);
-app.use("/pendingTickets", pendingTickets);
-app.use("/completed", completedTickets);
+app.use("/pendingTickets", pendingTicketsRoutes);
+app.use("/completedTickets", completedTicketsRoutes);
 app.use("/details", detailsRoutes);
 app.use('/', homepageRoutes);
 app.use('/request', requestRoutes)
