@@ -14,10 +14,13 @@ app.use(
     secret: process.env.SESSION_SECRET
     })
 );
+
 app.engine("html", es6Renderer);
 app.set("view engine", "html");
 app.set("views", "views");
 
+const homepageRoutes = require('./routes/homepage');
+const requestRoutes = require("./routes/request");
 const loginRoutes = require("./routes/login");
 const dashboardRoutes = require("./routes/dashboard");
 const allTicketsRoutes = require("./routes/allTickets");
@@ -29,6 +32,12 @@ app.use("/dashboard", dashboardRoutes);
 app.use("/allTickets", allTicketsRoutes);
 app.use("/openTickets", openTicketsRoutes);
 app.use("/details", detailsRoutes);
+app.use('/', homepageRoutes);
+app.use('/request', requestRoutes)
+
+// THIS LETS US SERVE IMAGES & THE CSS FILE
+app.use('/static', express.static('static'));
+
 
 app.listen(PORT, () => {
     console.log(`server is running at port: ${PORT}`);
