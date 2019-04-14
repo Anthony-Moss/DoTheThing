@@ -3,11 +3,10 @@ const createUserRouter = express.Router();
 
 const {
     showCreateUser,
-    checkIfEmailInUse,
-    addUser
+    checkIfEmailInUse
 } = require("../controllers/createUser");
 
 createUserRouter.get("/", showCreateUser);
-createUserRouter.post("/", checkIfEmailInUse, addUser);
+createUserRouter.post("/", checkIfEmailInUse);
 
 module.exports = createUserRouter;
