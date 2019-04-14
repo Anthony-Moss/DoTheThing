@@ -10,7 +10,7 @@ async function pendingTicketsPage(req, res) {
     //could put 'dashboard' here
     locals: {
       firtName: theUser.firstName,
-      message: "View Open Tickets Below!",
+      message: "View Pending Tickets Below!",
       tickets: arrayOfTickets,
       join: joinTables
     }
