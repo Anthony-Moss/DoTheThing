@@ -19,9 +19,10 @@ async function addUser(req, res) {
     res.redirect('/login');
 }
 
-async function checkEmail(req, res) {
+async function checkIfEmailInUse(req, res) {
     const theEmail = escapeHtml(req.body.email);
-    const emailTaken = await User.getByEmail(theEmail);
+    const emailTaken = await User.checkEmail(theEmail);
+    console.log(emailTaken);
     
     if (emailTaken) {
         res.render("createUser", {
@@ -45,6 +46,6 @@ async function checkEmail(req, res) {
 
 module.exports = {
     showCreateUser,
-    checkEmail,
+    checkIfEmailInUse,
     addUser
 };
