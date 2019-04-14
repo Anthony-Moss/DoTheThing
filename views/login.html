@@ -14,6 +14,8 @@
       body {
         background-color: #2D2D2D;
         margin: 100px;
+        justify-content: center;
+        text-align: center;
       }
       
       h1 {
@@ -23,11 +25,13 @@
 
       .form-group {
         color: white;
+        text-align: left;
       }
       
       .btn {
         color: white;
         background-color: orange;
+        margin: 15px;
       }
 
       img {
@@ -68,6 +72,11 @@
                     </div>
                     <button type="submit" class="btn">Log In</button>
                   </form>
+                  <form action="/createUser" method="GET">
+                    <button type="submit" class="btn">Create Account</button>
+                  </form>
+
+                  <!-- <a class="btn btn-primary" href="/createUser" role="button">Create An Account</a> -->
 
                   <div class="footer">
                       <img src="/static/images/ticket-icon.png">
