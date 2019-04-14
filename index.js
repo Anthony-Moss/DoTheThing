@@ -40,7 +40,7 @@ app.use("/pendingTickets", pendingTicketsRoutes);
 app.use("/completedTickets", completedTicketsRoutes);
 app.use("/details", detailsRoutes);
 app.use('/', homepageRoutes);
-app.use('/request', requestRoutes)
+app.use('/request', requestRoutes);
 app.use('/createUser', createUserRoutes);
 
 // THIS LETS US SERVE IMAGES & THE CSS FILE
