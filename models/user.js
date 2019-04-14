@@ -42,6 +42,9 @@ class User {
       .then(data => {
         //console.log("you did the thing! good job")
         return data.id;
+      })
+      .catch(() => {
+        return null; //signal an invalid value
       });
   }
 
@@ -104,6 +107,9 @@ class User {
   static getByEmail(email) {
     return db
       .one(`select * from users where email=$1`, [email])
+      .catch(() => {
+        return null; //signal an invalid value
+      })
       .then(userData => {
         const aUser = new User(
           userData.id,
@@ -112,8 +118,19 @@ class User {
           userData.email,
           userData.password
         );
+        console.log(`You created a new account with the email ${userData.email}!`);
         return aUser;
+      })
+      .catch(() => {
+        return null; //signal an invalid value
       });
+  }
+
+  static checkEmail(aEmail) {
+    return db.one(`select email from users where email=$1`, [aEmail])
+    .catch(() => {
+      return null; //signals that email is not in database, invalid/nonexistant value
+    });
   }
 
   checkPassword(aPassword) {
