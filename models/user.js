@@ -20,6 +20,12 @@ class User {
     return db.result("delete from users where id=$1", [id]);
   }
 
+  static setPassword(newPassword) {
+    const salt = bcrpyt.genSaltSync(10);
+    const hash = bcrpyt.hashSync(newPassword, salt);
+    this.password = hash;
+  }
+
   static add(userData) {
     //do an insert into the database
     // not using ${} because I dont want to interpolate
@@ -28,6 +34,8 @@ class User {
     const lastName = escapeHtml(userData.last_name);
     const email = escapeHtml(userData.email);
     const aPassword = escapeHtml(userData.password);
+    const hashed = User.setPassword(userData.password);
+    await 
     return db
       .one(
         `
@@ -41,7 +49,7 @@ class User {
           firstName,
           lastName,
           email,
-          aPassword
+          hashed
         ]
       )
       .then(data => {
@@ -104,11 +112,6 @@ class User {
       );
     }
     
-    setPassword(newPassword) {
-      const salt = bcrpyt.genSaltSync(10);
-      const hash = bcrpyt.hashSync(newPassword, salt);
-      this.password = hash;
-    }
     checkPassword(aPassword) {
       //const isCorrect = bcrypt.compareSync(aPassword, this.password);
       return bcrpyt.compareSync(aPassword, this.password);
