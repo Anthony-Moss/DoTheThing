@@ -42,10 +42,10 @@ class User {
       .then(data => {
         //console.log("you did the thing! good job")
         return data.id;
-      })
-      .catch(() => {
-        return null; //signal an invalid value
       });
+      // .catch(() => {
+      //   return null; //signal an invalid value
+      // });
   }
 
   // "static" means that the function is something
@@ -96,10 +96,14 @@ class User {
       }', email='${this.email}', password='${this.password}' where id=${
         this.id
       } `
-    );
-  }
-
-  setPassword(newPassword) {
+      );
+    }
+    checkPassword(aPassword) {
+      //const isCorrect = bcrypt.compareSync(aPassword, this.password);
+      return bcrpyt.compareSync(aPassword, this.password);
+    }
+    
+    setPassword(newPassword) {
     const salt = bcrpyt.genSaltSync(10);
     const hash = bcrpyt.hashSync(newPassword, salt);
     this.password = hash;
@@ -107,9 +111,6 @@ class User {
   static getByEmail(email) {
     return db
       .one(`select * from users where email=$1`, [email])
-      .catch(() => {
-        return null; //signal an invalid value
-      })
       .then(userData => {
         const aUser = new User(
           userData.id,
@@ -124,7 +125,7 @@ class User {
       .catch(() => {
         return null; //signal an invalid value
       });
-  }
+    }
 
   static checkEmail(aEmail) {
     return db.one(`select email from users where email=$1`, [aEmail])
@@ -133,11 +134,7 @@ class User {
     });
   }
 
-  checkPassword(aPassword) {
-    //const isCorrect = bcrypt.compareSync(aPassword, this.password);
-    return bcrpyt.compareSync(aPassword, this.password);
-  }
-
+  
   //   get tickets() {
   //     return db
   //       .any(`select * from tickets where user_id=${this.id}`)

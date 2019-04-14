@@ -12,6 +12,8 @@ async function showLogin(req, res) {
 async function checkLogin(req, res) {
   const theEmail = escapeHtml(req.body.email);
   const thePassword = escapeHtml(req.body.password);
+  console.log(theEmail);
+  console.log(thePassword);
   // call the User function that checks username against username in database
   // if the username exists, creates an instance of User
   const theUser = await User.getByEmail(theEmail);
