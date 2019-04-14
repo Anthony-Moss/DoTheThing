@@ -30,6 +30,7 @@ const openTicketsRoutes = require("./routes/openTickets");
 const pendingTicketsRoutes = require("./routes/pendingTickets");
 const completedTicketsRoutes = require("./routes/completedTickets");
 const detailsRoutes = require("./routes/details");
+const createUserRoutes = require("./routes/createUser");
 
 app.use("/login", loginRoutes);
 app.use("/dashboard", dashboardRoutes);
@@ -40,6 +41,7 @@ app.use("/completedTickets", completedTicketsRoutes);
 app.use("/details", detailsRoutes);
 app.use('/', homepageRoutes);
 app.use('/request', requestRoutes)
+app.use('/createUser', createUserRoutes);
 
 // THIS LETS US SERVE IMAGES & THE CSS FILE
 app.use('/static', express.static('static'));
