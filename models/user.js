@@ -1,6 +1,7 @@
 // Bring in the databse connection.
 const db = require("./conn");
 const bcrpyt = require("bcryptjs");
+const escapeHtml = require("../utils");
 
 // Need a User class.
 // Classes should start with an uppercase letter
@@ -98,16 +99,16 @@ class User {
       } `
       );
     }
+    
+    setPassword(newPassword) {
+      const salt = bcrpyt.genSaltSync(10);
+      const hash = bcrpyt.hashSync(newPassword, salt);
+      this.password = hash;
+    }
     checkPassword(aPassword) {
       //const isCorrect = bcrypt.compareSync(aPassword, this.password);
       return bcrpyt.compareSync(aPassword, this.password);
     }
-    
-    setPassword(newPassword) {
-    const salt = bcrpyt.genSaltSync(10);
-    const hash = bcrpyt.hashSync(newPassword, salt);
-    this.password = hash;
-  }
   static getByEmail(email) {
     return db
       .one(`select * from users where email=$1`, [email])
@@ -121,16 +122,14 @@ class User {
         );
         console.log(`You created a new account with the email ${userData.email}!`);
         return aUser;
-      })
-      .catch(() => {
-        return null; //signal an invalid value
       });
     }
 
-  static checkEmail(aEmail) {
+  static checkEmail(userData) {
+    const aEmail = escapeHtml(userData.email);
     return db.one(`select email from users where email=$1`, [aEmail])
     .catch(() => {
-      return null; //signals that email is not in database, invalid/nonexistant value
+      return userData; //signals that email is not in database, invalid/nonexistant value
     });
   }
 
