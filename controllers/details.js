@@ -10,7 +10,6 @@ const details = require("../models/details")
 async function loadDetailsPage(req, res) {
     const theUser = await User.getById(req.session.user);
     const ticketId = await allTickets.getTicketInfoByIdIfOpen();
-    // await allTickets.newIssueSubmitted(req.body.issue_desc);
     const openTicket = new openTickets(req.body.id);
     const detailsArray = await details.getAll();
 
@@ -27,6 +26,31 @@ async function loadDetailsPage(req, res) {
     }
 }
 
+
+async function renderNewDetailsAfterSubmission(req, res) {
+    const theUser = await User.getById(req.session.user);
+    const ticketId = await allTickets.getTicketInfoByIdIfOpen();
+    await details.newDetailSubmitted(req.body.note_content, req.body.users_id, req.body.all_tickets_id);
+    const openTicket = new openTickets(req.body.id);
+    const detailsArray = await details.getAll();
+    const newDetails = new details(req.body.note_content, req.body.users_id, req.body.all_tickets_id);
+
+    if(newDetails) {
+    res.render("details", {
+        locals: {
+        message: ticketId.id,
+        firstName: theUser.first_name,
+        ticketDesc: "Tickets desc will go here",
+        ticketCreated: ticketId.timestamp,
+        detail: detailsArray
+        }
+    });
+    }
+}
+
+
+
 module.exports = {
-    loadDetailsPage
+    loadDetailsPage,
+    renderNewDetailsAfterSubmission
 }

@@ -8,6 +8,91 @@
     <title>Ticket Details</title>
 </head>
 <body>
+
+        <style>
+
+                body {
+                  /* background-color: rgb(53,58,63); */
+                  /* color: white; */
+                  margin: 70px;
+                }
+                
+          
+                .sidenav {
+                  height: 100%;
+                  width: 0;
+                  position: fixed;
+                  z-index: 1;
+                  top: 0;
+                  left: 0;
+                  background-color: #111;
+                  overflow-x: hidden;
+                  transition: 0.5s;
+                  padding-top: 60px;
+                }
+          
+                .sidenav a {
+                  padding: 8px 8px 8px 32px;
+                  text-decoration: none;
+                  font-size: 25px;
+                  color: #818181;
+                  display: block;
+                  transition: 0.3s;
+                }
+          
+                .sidenav a:hover {
+                  color: orange;
+                }
+          
+                .sidenav .closebtn {
+                  position: absolute;
+                  top: 0;
+                  right: 25px;
+                  font-size: 36px;
+                  margin-left: 50px;
+                }
+          
+                #main {
+                  transition: margin-left .5s;
+                  padding: 16px;
+                }
+          
+                @media screen and (max-height: 450px) {
+                  .sidenav {padding-top: 15px;}
+                  .sidenav a {font-size: 18px;}
+                }
+                      
+          
+                </style>
+          
+                <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="#">Open</a>
+                    <a href="#">Pending</a>
+                    <a href="#">Completed</a>
+                  </div>
+            
+                <div id="main">
+                  <span style="font-size:50px;cursor:pointer;display:flex;justify-content:flex-start;" onclick="openNav()">&#9776; </span>
+              
+                
+                <script>
+                function openNav() {
+                  document.getElementById("mySidenav").style.width = "250px";
+                  document.getElementById("main").style.marginLeft = "250px";
+                }
+                
+                function closeNav() {
+                  document.getElementById("mySidenav").style.width = "0";
+                  document.getElementById("main").style.marginLeft= "0";
+                }
+                </script>
+          
+
+
+
+
     <h1>Ticket Details</h1>
 
     <h2>${message}</h2>
@@ -35,6 +120,27 @@
               </tr>
             </tbody>
           </table>
+
+
+          <h1>Add Note</h1>
+
+        <form 
+        action="/details" 
+        method="POST"
+        >
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Issue</label>
+              <input type="text" name="note_content" class="form-control" id="exampleFormControlInput1" placeholder="Please describe the issue here">
+            </div>
+            <div class="form-group">
+                <!-- <label for="exampleFormControlInput1">Comments/Time</label>
+                <input type="text" name="time_posted" class="form-control" id="exampleFormControlInput1" placeholder="Category"> -->
+              </div>
+            <div class="form-group">
+              
+              <button type="submit" class="btn">Submit</button>
+            </div>
+          </form>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

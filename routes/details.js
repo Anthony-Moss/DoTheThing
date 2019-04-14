@@ -1,8 +1,9 @@
 const express = require("express");
 const detailsRouter = express.Router();
 
-const { loadDetailsPage } = require("../controllers/details");
+const { loadDetailsPage, renderNewDetailsAfterSubmission } = require("../controllers/details");
 
 detailsRouter.get("/:id", loadDetailsPage)
+detailsRouter.post("/", renderNewDetailsAfterSubmission);
 
 module.exports = detailsRouter;
