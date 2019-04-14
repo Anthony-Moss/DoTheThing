@@ -21,7 +21,7 @@ class CompletedTickets {
 
   static getByAllTicketsId() {
     return db
-      .any(`select * from completed_tickets`)
+      .any(`select * from completed_tickets c inner join all_tickets a on c.all_tickets_id=a.id`)
       .then(arrayOfCompletedTicketsData => {
         return arrayOfCompletedTicketsData;
       });

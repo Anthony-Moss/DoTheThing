@@ -9,8 +9,9 @@ async function completedTicketsPage(req, res) {
   res.render("completedTickets", {
     locals: {
       firtName: theUser.firstName,
-      message: "View Completed Tickets Below!"
-      // tickets: arrayOfTickets
+      message: "View Completed Tickets Below!",
+      tickets: arrayOfTickets,
+      join: joinTables
     }
   });
 }

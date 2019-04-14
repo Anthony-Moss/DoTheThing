@@ -34,8 +34,7 @@
       ${ join.map((ticket) => { return `
       <tr>
         <td>${ticket.id}</td>
-        <td>${ticket.all_tickets_id}</td>
-        <td>${ticket.users_id}</td>
+        <td>${ticket.issue_desc}</td>
         <td>${ticket.time_ended}</td>
         ` }).join('') }
       </tr>
