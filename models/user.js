@@ -24,6 +24,10 @@ class User {
     //do an insert into the database
     // not using ${} because I dont want to interpolate
     // using $() so that pg-promise does *safe* interpolation
+    const firstName = escapeHtml(userData.first_name);
+    const lastName = escapeHtml(userData.last_name);
+    const email = escapeHtml(userData.email);
+    const aPassword = escapeHtml(userData.password);
     return db
       .one(
         `
@@ -34,10 +38,10 @@ class User {
     returning id, first_name, last_name
     `,
         [
-          userData.first_name,
-          userData.last_name,
-          userData.email,
-          userData.password
+          firstName,
+          lastName,
+          email,
+          aPassword
         ]
       )
       .then(data => {
