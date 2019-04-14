@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Login Page</title>
+</head>
+<body> 
+
+    <style>
+
+    body {
+        background-color: #2D2D2D;
+        margin: 100px;
+        text-align: center;
+    }
+    
+    h1 {
+        font-family: 'Avenir';
+        color: orange;
+    }
+
+    .form-group {
+        color: white;
+        text-align: left;
+    }
+    
+    .btn {
+        color: white;
+        background-color: orange;
+        margin: 15px;
+    }
+
+    bolabel {
+        text-align: start;
+    }
+
+    img {
+        width: 150px; 
+        height: 50px;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #2D2D2D;
+        color: white;
+        text-align:right;
+        margin: 0px 150px 20px 0px;
+    }
+
+    </style>
+            <h1>${message}</h1>      
+            
+                <form action="/createUser" method="POST">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input value="${firstName}" name="first_name" type="text" class="form-control" id="exampleFormControlInput1" aria-describedby="firstNameHelp" placeholder="Enter First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input value="${lastName}" name="last_name" type="text" class="form-control" id="exampleFormControlInput1" aria-describedby="lastNameHelp" placeholder="Enter Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input value="${email}" name="email" type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input value=""
+                        name="password" type="password" class="form-control" id="password" placeholder="Enter password">
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="password">Confirm Password</label>
+                        <input value=""
+                        name="confirmpassword" type="password" class="form-control" placeholder="Enter password">
+                    </div> -->
+                
+                    </div>
+                    <button type="submit" class="btn">Create Account</button>
+                </form>
+
+                <div class="footer">
+                    <img src="/static/images/ticket-icon.png">
+                    </div>
+    
+</body>
+</html>
