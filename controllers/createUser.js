@@ -15,16 +15,22 @@ async function showCreateUser(req, res) {
 }
 
 async function addUser(req, res) {
+    console.log(req.body);
     await User.add(req.body);
     res.redirect('/login');
 }
 
 async function checkIfEmailInUse(req, res) {
-    const theEmail = escapeHtml(req.body.email);
-    const emailTaken = await User.checkEmail(theEmail);
-    console.log(emailTaken);
-    
-    if (emailTaken) {
+    let theUserData = req.body;
+    let theEmail = escapeHtml(req.body.email);
+    const emailTaken = await User.checkEmail(theUserData);
+    // console.log(emailTaken);
+
+    if (emailTaken === theUserData) {
+        console.log(emailTaken);
+        await User.add(req.body);
+        res.redirect('login');
+    } else {
         res.render("createUser", {
             locals: {
                 message: "Email address already registered, please use a different email or log in with your password at the login page",
@@ -35,13 +41,7 @@ async function checkIfEmailInUse(req, res) {
                 confirmPassword:""
             }
         });
-    } else {
-        addUser(req.body);
-        
-        res.redirect('/login')
     }
-    
-    
 }
 
 module.exports = {
