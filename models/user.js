@@ -1,6 +1,7 @@
 // Bring in the databse connection.
 const db = require("./conn");
 const bcrpyt = require("bcryptjs");
+const escapeHtml = require("../utils");
 
 // Need a User class.
 // Classes should start with an uppercase letter
@@ -19,10 +20,22 @@ class User {
     return db.result("delete from users where id=$1", [id]);
   }
 
+  static setPassword(newPassword) {
+    const salt = bcrpyt.genSaltSync(10);
+    const hash = bcrpyt.hashSync(newPassword, salt);
+    this.password = hash;
+  }
+
   static add(userData) {
     //do an insert into the database
     // not using ${} because I dont want to interpolate
     // using $() so that pg-promise does *safe* interpolation
+    const firstName = escapeHtml(userData.first_name);
+    const lastName = escapeHtml(userData.last_name);
+    const email = escapeHtml(userData.email);
+    const aPassword = escapeHtml(userData.password);
+    const hashed = User.setPassword(userData.password);
+    await 
     return db
       .one(
         `
@@ -33,16 +46,19 @@ class User {
     returning id, first_name, last_name
     `,
         [
-          userData.first_name,
-          userData.last_name,
-          userData.email,
-          userData.password
+          firstName,
+          lastName,
+          email,
+          hashed
         ]
       )
       .then(data => {
         //console.log("you did the thing! good job")
         return data.id;
       });
+      // .catch(() => {
+      //   return null; //signal an invalid value
+      // });
   }
 
   // "static" means that the function is something
@@ -93,14 +109,13 @@ class User {
       }', email='${this.email}', password='${this.password}' where id=${
         this.id
       } `
-    );
-  }
-
-  setPassword(newPassword) {
-    const salt = bcrpyt.genSaltSync(10);
-    const hash = bcrpyt.hashSync(newPassword, salt);
-    this.password = hash;
-  }
+      );
+    }
+    
+    checkPassword(aPassword) {
+      //const isCorrect = bcrypt.compareSync(aPassword, this.password);
+      return bcrpyt.compareSync(aPassword, this.password);
+    }
   static getByEmail(email) {
     return db
       .one(`select * from users where email=$1`, [email])
@@ -112,15 +127,20 @@ class User {
           userData.email,
           userData.password
         );
+        console.log(`You created a new account with the email ${userData.email}!`);
         return aUser;
       });
+    }
+
+  static checkEmail(userData) {
+    const aEmail = escapeHtml(userData.email);
+    return db.one(`select email from users where email=$1`, [aEmail])
+    .catch(() => {
+      return userData; //signals that email is not in database, invalid/nonexistant value
+    });
   }
 
-  checkPassword(aPassword) {
-    //const isCorrect = bcrypt.compareSync(aPassword, this.password);
-    return bcrpyt.compareSync(aPassword, this.password);
-  }
-
+  
   //   get tickets() {
   //     return db
   //       .any(`select * from tickets where user_id=${this.id}`)
