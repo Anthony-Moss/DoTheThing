@@ -28,6 +28,7 @@
         <th scope="col">#</th>
         <th scope="col">Issue Description</th>
         <th scope="col">Time Posted</th>
+        <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
@@ -36,6 +37,12 @@
         <td>${ticket.id}</td>
         <td>${ticket.issue_desc}</td>
         <td>${ticket.time_posted}</td>
+        <td>
+            <form action="/pendingTickets" method="POST">
+              <button type="submit" class="btn btn-info">Get Details</button>
+            </form>
+
+        </td>
         ` }).join('') }
       </tr>
     </tbody>

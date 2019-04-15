@@ -132,10 +132,11 @@
           </form>
         </td>
         <td>
-            <form action="/allTickets" method="GET">
-            <button type="submit" value="${issue.id}" class="btn btn-info">Get Details</button>
+            <form action="/pendingTickets" method="POST">
+              <button type="submit" value="${issue.id}" class="btn btn-info">pending</button>
             </form>
-          </td>
+
+        </td>
 
           <!-- <div class="dropdown">
             <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"

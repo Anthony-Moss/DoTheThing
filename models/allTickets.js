@@ -46,6 +46,7 @@ static getTicketInfoByIssue(issueDesc) {
 static getTicketInfo(id) {
   return db.one('select * from all_tickets t where t.id = $1', [parseInt(id)])
   .then((ticketData) => {
+    console.log(ticketData);
     return ticketData;
   });
 }
@@ -74,6 +75,13 @@ static moveToOpen(allTicketsId, usersId) {
         return ticketData;
       });
   }
+
+  // CHANGE STATUS TO 'PENDING'
+ static updateToPending(id){
+  return db.one('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
+  }
+
+  // return db.one('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id]
 
   static getOpenTickets(ticket_status) {
     return db.any('select * from all_tickets where ticket_status = $1', [ticket_status])

@@ -34,15 +34,14 @@
       </tr>
     </thead>
     <tbody>
-      ${ join.map((ticket) => { return `
+  
       <tr>
-        <td>${ticket.id}</td>
-        <td>${ticket.all_tickets_id}</td>
-        <td>${ticket.users_id}</td>
-        <td>${ticket.time_started}</td>
-        <td>${ticket.issue_desc}</td>
-        <td>${ticket.time_posted}</td>
-        ` }).join('') }
+        <td>${ticketId}</td>
+        <!-- <td>${ticket.all_tickets_id}</td> -->
+        <!-- <td>${ticket.users_id}</td> -->
+        <!-- <td>${ticket.time_started}</td> -->
+        <td>${ticketIssueDesc}</td>
+        <td>${ticketTime}</td>
       </tr>
     </tbody>
   </table>

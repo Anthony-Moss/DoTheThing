@@ -45,5 +45,6 @@ create table notes (
     id serial primary key,
     note_content varchar(250),
     users_id integer references users,
-    all_tickets_id integer references all_tickets
+    all_tickets_id integer references all_tickets,
+    time_posted VARCHAR(500)
 );

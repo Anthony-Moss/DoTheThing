@@ -35,10 +35,10 @@ async function renderNewDetailsAfterSubmission(req, res) {
     const user = await User.getById(req.session.user);
     // console.log('where is the user', req.session.user);
     const ticketId = req.params.id;
-    await details.newDetailSubmitted(req.body.note_content, user.id, ticketId);
+    await details.newDetailSubmitted(req.body.note_content, user.id, ticketId, req.body.time_posted);
     // const openTicket = new openTickets(req.body.id);
     const detailsArray = await details.getNotesByTicketId(ticketId);
-    const newDetails = new details(req.body.note_content, req.body.users_id, req.body.all_tickets_id);
+    const newDetails = new details(req.body.note_content, req.body.users_id, req.body.all_tickets_id, req.body.time_posted);
 
     if(newDetails) {
     res.render("details", {

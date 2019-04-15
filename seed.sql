@@ -29,6 +29,6 @@ insert into completed_tickets
     (2, 1, '2008-01-01 00:00:01')
 ;
 insert into notes
-    (note_content, all_tickets_id, users_id)
+    (note_content, all_tickets_id, users_id, time_posted)
     VALUES
-    ('fixed elevator door, it was just a bad sensor', 2, 1)
+    ('fixed elevator door, it was just a bad sensor', 2, 1,'2008-01-01 00:00:01')
