@@ -1,6 +1,10 @@
 require("dotenv").config();
 const PORT = process.env.PORT;
 const express = require("express");
+const bodyParser = require("body-parser");
+//const ejs = require("ejs");
+const Nexmo = require("nexmo");
+const socketio = require("socket.io");
 const app = express();
 const es6Renderer = require("express-es6-template-engine");
 const session = require("express-session");
@@ -9,6 +13,8 @@ const AllTickets = require("./models/allTickets");
 const OpenTickets = require("./models/openTickets");
 const PendingTickets = require("./models/pendingTickets");
 const CompletedTickets = require("./models/completedTickets");
+app.use(express.static(__dirname + 'public'));
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
