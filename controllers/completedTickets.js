@@ -15,6 +15,9 @@ async function completedTicketsPage(req, res) {
     }
   });
 }
+
+
+
 module.exports = {
   completedTicketsPage
 };

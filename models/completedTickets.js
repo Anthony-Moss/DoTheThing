@@ -26,6 +26,7 @@ class CompletedTickets {
         return arrayOfCompletedTicketsData;
       });
   }
+
 }
 
 module.exports = CompletedTickets;
