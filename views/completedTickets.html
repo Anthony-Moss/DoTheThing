@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Completed Tickets</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 </head>
@@ -40,18 +41,19 @@
       </tr>
     </tbody>
   </table>
-  <div class="container">
+  <form action="/completedTickets" method="POST">
 
-    <h5>Send SMS Message</h5>
-    <input type="tel" name="number" id="number" placeHolder="Enter Phone Number...">
-    <input type="text" name="msg" id="msg" placeHolder="Enter Text Message...">
-    <input type="button" id="button" value="Send Text..." class="button button-primary">
-    <p class="response"></p>
-  </div>
+    <div class="container">
+
+      <h2>Send SMS Message</h2>
+      <input type="tel" name="number" id="number" placeHolder="Enter Phone Number...">
+      <input type="text" name="msg" id="msg" placeHolder="Enter Text Message...">
+      <input type="button" id="button" value="Send Text..." class="button button-primary">
+      <p class="response"></p>
+    </div>
+  </form>
 
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/models/completedTickets.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -61,6 +63,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/message.js"></script>
+
 </body>
 
 </html>

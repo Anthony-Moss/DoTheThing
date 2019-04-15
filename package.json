@@ -7,6 +7,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
+    "ejs": "^2.6.1",
     "escape-html": "^1.0.3",
     "express": "^4.16.4",
     "express-es6-template-engine": "^2.1.7",
