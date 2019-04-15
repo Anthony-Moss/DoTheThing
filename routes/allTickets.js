@@ -6,5 +6,5 @@ const { allTicketsPage, submitRequest, updateTicketList } = require("../controll
 
 allTicketsRoutes.get("/", allTicketsPage);
 allTicketsRoutes.post("/", submitRequest);
-allTicketsRoutes.post("/", updateTicketList);
+// allTicketsRoutes.post("/", updateTicketList);
 module.exports = allTicketsRoutes;

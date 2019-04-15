@@ -132,15 +132,20 @@
           </form>
         </td>
         <td>
-          <div class="dropdown">
+            <form action="/allTickets" method="GET">
+            <button type="submit" value="${issue.id}" class="btn btn-info">Get Details</button>
+            </form>
+          </td>
+
+          <!-- <div class="dropdown">
             <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               Status
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <div 
-              action="/pendingTickets"
-              method="POST">
+              action="/details/${issue.id}"
+              method="GET">
               <button type="submit">Pending</button>
             </div>
       
@@ -152,7 +157,7 @@
         }).join('')
         }
 
-      </tr>
+      </tr> -->
     </tbody>
   </table>
 

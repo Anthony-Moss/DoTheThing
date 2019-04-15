@@ -20,13 +20,18 @@ class PendingTickets {
   }
 
   static getByAllTicketsId() {
-    return db
-      .any(`select * from pending_tickets p inner join all_tickets a on p.all_tickets_id =a.id`)
+    return db.any(`select p.*, a.issue_desc, a.time_posted from pending_tickets p inner join all_tickets a on p.all_tickets_id=a.id`)
       .then(arrayOfPendingTicketsData => {
         return arrayOfPendingTicketsData;
       });
   }
 
+  static getAllTicketsIdOfPendingTicket(id) {
+    return db.one(`select all_tickets_id from pending_tickets where id=${id}`)
+    .then((ticketId) => {
+      return ticketId;
+    });
+  }
 }
 
 module.exports = PendingTickets;
