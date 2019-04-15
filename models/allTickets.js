@@ -33,6 +33,7 @@ static newIssueSubmitted(issue_desc) {
   return db.none(`insert into all_tickets (issue_desc, time_posted)
                   values ('${issue_desc}', '${entireDate}')`)
           ;
+  ;
       }
 
 
