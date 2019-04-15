@@ -26,16 +26,22 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Issue Description</th>
-        <th scope="col">Time Posted</th>
+        <th scope="col">Ticket ID number</th>
+        <th scope="col">Asigned Workers ID</th>
+        <th scope="col">Time Started</th>
+        <th scope="col">Ticket Description</th>
+        <th scope="col">Time ticket submitted</th>
       </tr>
     </thead>
     <tbody>
       ${ join.map((ticket) => { return `
       <tr>
         <td>${ticket.id}</td>
+        <td>${ticket.all_tickets_id}</td>
+        <td>${ticket.users_id}</td>
+        <td>${ticket.time_started}</td>
         <td>${ticket.issue_desc}</td>
-        <td>${ticket.time_ended}</td>
+        <td>${ticket.time_posted}</td>
         ` }).join('') }
       </tr>
     </tbody>
