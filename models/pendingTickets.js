@@ -26,6 +26,7 @@ class PendingTickets {
         return arrayOfPendingTicketsData;
       });
   }
+
 }
 
 module.exports = PendingTickets;

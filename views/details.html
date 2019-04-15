@@ -15,8 +15,14 @@
                   /* background-color: rgb(53,58,63); */
                   /* color: white; */
                   margin: 70px;
+                  /* background-color: #2D2D2D; */
+                  /* color: white; */
                 }
-                
+
+                .btn {
+                  color: white;
+                  background-color: orange;
+                }                
           
                 .sidenav {
                   height: 100%;
@@ -68,9 +74,9 @@
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <a href="/dashboard">Dashboard</a>
-                    <a href="#">Open</a>
-                    <a href="#">Pending</a>
-                    <a href="#">Completed</a>
+                    <a href="/allTickets">Open</a>
+                    <a href="/pendingTickets">Pending</a>
+                    <a href="/completedTickets">Completed</a>
                   </div>
             
                 <div id="main">
@@ -91,8 +97,6 @@
           
 
 
-
-
     <h1>Ticket Details</h1>
 
     <h2>${message}</h2>
@@ -105,7 +109,7 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Notes</th>
-                <th scope="col">Users Id</th>
+                <th scope="col">User</th>
                 <th scope="col">All Tickets Id</th>
               </tr>
             </thead>

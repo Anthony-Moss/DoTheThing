@@ -18,7 +18,7 @@ class AllTickets {
 static getAll() {
     return db.any(`select * from all_tickets`)
     .then((arrayOfTickets) => {
-        console.log(arrayOfTickets);
+        // console.log(arrayOfTickets);
         return arrayOfTickets
     });
 }
@@ -51,6 +51,21 @@ static getTicketInfo(id) {
     return ticketData;
   });
 }
+
+static moveToPending(allTicketsId, usersId) {
+  // const timestamp = new Date();
+  // const month = timestamp.getMonth() + 1;
+  // const realMonth = month.toString();
+  // const date = timestamp.getDate().toString();
+  // const year = timestamp.getFullYear().toString();
+  // const timeStarted = `${realMonth}/ ${date}/ ${year}`
+  return db.none(`INSERT INTO pending_tickets 
+  SELECT all_tickets_id
+   FROM all_tickets
+  WHERE id = $1'`, [allTicketsId, usersId])
+}
+
+
 
 // static getTicketInfoByIdIfPending(id) {
 //   return db.one(`select * from all_tickets a inner join pending_tickets p on a.id = p.all_tickets_id where id = ${id}`)

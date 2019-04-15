@@ -31,7 +31,26 @@ async function submitRequest(req, res) {
   }
 }
 
+  async function updateTicketList(req, res) {
+    const theUser = await User.getById(req.session.user);
+    const arrayOfTickets = await allTickets.getAll();
+    // const ticket = await allTickets.getTicketInfo(); 
+    console.log('is this')
+    await allTickets.moveToPending(req.body);     
+    console.log('even happening')
+    // const newRequests = new allTickets(req.body.issue_desc);
+  
+      res.render("allTickets", {
+        locals: {
+          message: "Welcome!",
+          firstName: theUser.first_name
+        }
+      });
+    }
+
+
 module.exports = {
   allTicketsPage,
-  submitRequest
+  submitRequest,
+  updateTicketList
 };
