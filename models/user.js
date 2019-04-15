@@ -20,11 +20,11 @@ class User {
     return db.result("delete from users where id=$1", [id]);
   }
 
-  static setPassword(newPassword) {
-    const salt = bcrpyt.genSaltSync(10);
-    const hash = bcrpyt.hashSync(newPassword, salt);
-    this.password = hash;
-  }
+  // static setPassword(newPassword) {
+  //   const salt = bcrpyt.genSaltSync(10);
+  //   const hash = bcrpyt.hashSync(newPassword, salt);
+  //   this.password = hash;
+  // }
 
   static add(userData) {
     //do an insert into the database
@@ -34,8 +34,7 @@ class User {
     const lastName = escapeHtml(userData.last_name);
     const email = escapeHtml(userData.email);
     const aPassword = escapeHtml(userData.password);
-    const hashed = User.setPassword(userData.password);
-    await 
+    // const hashed = User.setPassword(userData.password); 
     return db
       .one(
         `
@@ -49,7 +48,7 @@ class User {
           firstName,
           lastName,
           email,
-          hashed
+          aPassword
         ]
       )
       .then(data => {
@@ -116,6 +115,15 @@ class User {
       //const isCorrect = bcrypt.compareSync(aPassword, this.password);
       return bcrpyt.compareSync(aPassword, this.password);
     }
+
+
+    setPassword(newPassword) {
+      const salt = bcrpyt.genSaltSync(10);
+      const hash = bcrpyt.hashSync(newPassword, salt);
+      this.password = hash;
+    }
+    
+    
   static getByEmail(email) {
     return db
       .one(`select * from users where email=$1`, [email])

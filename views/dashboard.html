@@ -77,61 +77,44 @@
         font-size: 18px;
       }
     }
+
+    @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 15px;}
+          .sidenav a {font-size: 18px;}
+    }
   </style>
 
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">Home</a>
-    <a href="#">Open</a>
-    <a href="#">Pending</a>
-    <a href="#">Completed</a>
-  </div>
-
-  <div id="main">
-    <span style="font-size:50px;cursor:pointer;display:flex;justify-content:flex-start;" onclick="openNav()">&#9776;
-    </span>
-
-
-
-    <script>
-
-      @media screen and (max-height: 450px) {
-        .sidenav {padding-top: 15px;}
-        .sidenav a {font-size: 18px;}
-      }
-            
-
-      </style>
-
-      <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="/dashboard">Dashboard</a>
-          <a href="#">Open</a>
-          <a href="#">Pending</a>
-          <a href="#">Completed</a>
-        </div>
+<script>
   
-      <div id="main">
-        <span style="font-size:50px;cursor:pointer;display:flex;justify-content:flex-start;" onclick="openNav()">&#9776; </span>
-    
-      
-      <script>
+          function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+          }
+          
+          function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+          }
+          
+          </script>
+          
+          
+          
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/allTickets">Open</a>
+            <a href="/pendingTickets">Pending</a>
+            <a href="/completedTickets">Completed</a>
+          </div>
+          
+          <div id="main">
+            <span style="font-size:50px;cursor:pointer;display:flex;justify-content:flex-start;" onclick="openNav()">&#9776;
+            </span>
 
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-      }
 
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
-      }
-    </script>
-
-
-
-    <h1>Welcome back, ${firstName}</h1>
-
+          <h1>Welcome back, ${firstName}</h1>
+          
 
 
     <!-- <nav aria-label="breadcrumb">
