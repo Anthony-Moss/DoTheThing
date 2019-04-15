@@ -13,7 +13,6 @@ const AllTickets = require("./models/allTickets");
 const OpenTickets = require("./models/openTickets");
 const PendingTickets = require("./models/pendingTickets");
 const CompletedTickets = require("./models/completedTickets");
-app.use(express.static(__dirname + '/smsMessages'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -74,6 +73,13 @@ app.post('/', (req, res) => {
 
       } else {
         console.dir(responseData);
+        // Get data from response
+        const data = {
+          id: responseData.messages[0]['message-id'],
+          number: responseData.messages[0]['to']
+        }
+        // Emit to the client
+        io.emit('smsStatus', data);
       }
     }
   );
@@ -81,8 +87,21 @@ app.post('/', (req, res) => {
 
 // THIS LETS US SERVE IMAGES & THE CSS FILE
 app.use('/static', express.static('static'));
+app.use(express.static(__dirname + '/smsMessages'));
 
 
 app.listen(PORT, () => {
   console.log(`server is running at port: ${PORT}`);
+  // Connect to socket.io
+  const io = socketio();
+  io.on('connection', (socket) => {
+    console.log('Connected');
+    io.on('disconnect', () => {
+      console.log('Disconnected');
+
+    })
+  });
 });
+
+
+
