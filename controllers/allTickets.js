@@ -3,15 +3,16 @@ const allTickets = require("../models/allTickets");
 
 async function allTicketsPage(req, res) {
   const theUser = await User.getById(req.session.user);
-  const arrayOfTickets = await allTickets.getAll();
+  //const arrayOfTickets = await allTickets.getAll();
+  const arrayOfTickets = await allTickets.getOpenTickets(1);
 
-    res.render("allTickets", {
-      locals: {
-        firtName: theUser.firstName,
-        message: "View All Tickets Below!",
-        tickets: arrayOfTickets
-      }
-    });
+  res.render("allTickets", {
+    locals: {
+      firtName: theUser.firstName,
+      message: "View All Tickets Below!",
+      tickets: arrayOfTickets
+    }
+  });
 
 }
 
@@ -26,10 +27,7 @@ async function submitRequest(req, res) {
   const newRequests = new allTickets(req.body.issue_desc);
   // const moveToOpen = await allTickets.moveToOpen(newTicket.id, theUser.id)
 
-  if (newTicket) {
-    ticketData;
-  }
-  if(newRequests) {
+  if (newRequests) {
     res.render("thankyou", {
       locals: {
         message: "Welcome!",
