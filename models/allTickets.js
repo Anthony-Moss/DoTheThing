@@ -31,8 +31,7 @@ class AllTickets {
     const year = timestamp.getFullYear().toString();
     const entireDate = `${realMonth}/ ${date}/ ${year}`
     return db.none(`insert into all_tickets (issue_desc, time_posted)
-                  values ('${issue_desc}', '${entireDate}')`)
-      ;
+                  values ('${issue_desc}', '${entireDate}')`);
   }
 
 
