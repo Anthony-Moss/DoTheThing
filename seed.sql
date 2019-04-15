@@ -4,11 +4,12 @@ insert into users
     ('Anthony', 'Moss', 'am123@me.com', 'Waffles')
 ;
 insert into all_tickets 
-    (issue_desc)
+    (issue_desc, ticket_status)
     VALUES
-    ('2nd floor stairwell door does not unlock'),
-    ('Elavator doors keep opening and closing'),
-    ('4th floor coffee machine is broken')
+    ('2nd floor stairwell door does not unlock', 0),
+    ('Elavator doors keep opening and closing', 1),
+    ('4th floor coffee machine is broken', 2)
+    
 ;
 insert into open_tickets
     (all_tickets_id)

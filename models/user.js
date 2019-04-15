@@ -55,9 +55,9 @@ class User {
         //console.log("you did the thing! good job")
         return data.id;
       });
-      // .catch(() => {
-      //   return null; //signal an invalid value
-      // });
+    // .catch(() => {
+    //   return null; //signal an invalid value
+    // });
   }
 
   // "static" means that the function is something
@@ -104,26 +104,26 @@ class User {
     // how many rows got affected
     return db.result(
       `update users set first_name='${this.first_name}', last_name='${
-        this.last_name
+      this.last_name
       }', email='${this.email}', password='${this.password}' where id=${
-        this.id
+      this.id
       } `
-      );
-    }
-    
-    checkPassword(aPassword) {
-      //const isCorrect = bcrypt.compareSync(aPassword, this.password);
-      return bcrpyt.compareSync(aPassword, this.password);
-    }
+    );
+  }
+
+  checkPassword(aPassword) {
+    //const isCorrect = bcrypt.compareSync(aPassword, this.password);
+    return bcrpyt.compareSync(aPassword, this.password);
+  }
 
 
-    setPassword(newPassword) {
-      const salt = bcrpyt.genSaltSync(10);
-      const hash = bcrpyt.hashSync(newPassword, salt);
-      this.password = hash;
-    }
-    
-    
+  setPassword(newPassword) {
+    const salt = bcrpyt.genSaltSync(10);
+    const hash = bcrpyt.hashSync(newPassword, salt);
+    this.password = hash;
+  }
+
+
   static getByEmail(email) {
     return db
       .one(`select * from users where email=$1`, [email])
@@ -138,17 +138,17 @@ class User {
         console.log(`You created a new account with the email ${userData.email}!`);
         return aUser;
       });
-    }
+  }
 
   static checkEmail(userData) {
     const aEmail = escapeHtml(userData.email);
     return db.one(`select email from users where email=$1`, [aEmail])
-    .catch(() => {
-      return userData; //signals that email is not in database, invalid/nonexistant value
-    });
+      .catch(() => {
+        return userData; //signals that email is not in database, invalid/nonexistant value
+      });
   }
 
-  
+
   //   get tickets() {
   //     return db
   //       .any(`select * from tickets where user_id=${this.id}`)
