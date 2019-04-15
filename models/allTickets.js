@@ -15,31 +15,29 @@ class AllTickets {
     // this.status 
   }
 
-static getAll() {
+  static getAll() {
     return db.any(`select * from all_tickets`)
-    .then((arrayOfTickets) => {
+      .then((arrayOfTickets) => {
         // console.log(arrayOfTickets);
         return arrayOfTickets
-    });
-}
+      });
+  }
 
-static newIssueSubmitted(issue_desc) {
-  const timestamp = new Date();
-  const month = timestamp.getMonth() + 1;
-  const realMonth = month.toString();
-  const date = timestamp.getDate().toString();
-  const year = timestamp.getFullYear().toString();
-  const entireDate = `${realMonth}/ ${date}/ ${year}`
-  return db.none(`insert into all_tickets (issue_desc, time_posted)
-                  values ('${issue_desc}', '${entireDate}')`)
-          ;
-      }
+  static newIssueSubmitted(issue_desc) {
+    const timestamp = new Date();
+    const month = timestamp.getMonth() + 1;
+    const realMonth = month.toString();
+    const date = timestamp.getDate().toString();
+    const year = timestamp.getFullYear().toString();
+    const entireDate = `${realMonth}/ ${date}/ ${year}`
+    return db.none(`insert into all_tickets (issue_desc, time_posted)
+                  values ('${issue_desc}', '${entireDate}')`);
+  }
 
 
-// Will probably need to make seperate functions for each open, pending and completed tickets because they are all different so we can get details no matter
-// what status the ticket is in
-static getTicketInfoByIdIfOpen() {
-  return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id')
+
+static getTicketInfoByIssue(issueDesc) {
+  return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id where a.issue_desc = $1', [issueDesc])
   .then((ticketData) => {
     return ticketData;
   });
@@ -59,27 +57,45 @@ static moveToPending(allTicketsId, usersId) {
   // const date = timestamp.getDate().toString();
   // const year = timestamp.getFullYear().toString();
   // const timeStarted = `${realMonth}/ ${date}/ ${year}`
-  return db.none(`INSERT INTO pending_tickets 
-  SELECT all_tickets_id
-   FROM all_tickets
-  WHERE id = $1'`, [allTicketsId, usersId])
+  return db.none(`INSERT INTO pending_tickets (all_tickets_id, users_id)
+  values ('${allTicketsId}', '${usersId}')`);
 }
 
+static moveToOpen(allTicketsId, usersId) {
+  return db.none(`insert into open_tickets (all_tickets_id, users_id)
+  values ('${allTicketsId}', '${usersId}')`);
+}
 
+  // Will probably need to make seperate functions for each open, pending and completed tickets because they are all different so we can get details no matter
+  // what status the ticket is in
+  static getTicketInfoByIdIfOpen() {
+    return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id')
+      .then((ticketData) => {
+        return ticketData;
+      });
+  }
 
-// static getTicketInfoByIdIfPending(id) {
-//   return db.one(`select * from all_tickets a inner join pending_tickets p on a.id = p.all_tickets_id where id = ${id}`)
-//   .then((ticketData) => {
-//     return ticketData;
-//   });
-// }
+  static getOpenTickets(ticket_status) {
+    return db.any('select * from all_tickets where ticket_status = $1', [ticket_status])
+      .then((ticketData) => {
+        console.log(ticketData)
+        return ticketData;
+      });
+  }
 
-// static getTicketInfoByIdIfClosed(id) {
-//   return db.one(`select * from all_tickets a inner join closed_tickets c on a.id = c.all_tickets_id where id = ${id}`)
-//   .then((ticketData) => {
-//     return ticketData;
-//   });
-// }
+  // static getTicketInfoByIdIfPending(id) {
+  //   return db.one(`select * from all_tickets a inner join pending_tickets p on a.id = p.all_tickets_id where id = ${id}`)
+  //   .then((ticketData) => {
+  //     return ticketData;
+  //   });
+  // }
+
+  // static getTicketInfoByIdIfClosed(id) {
+  //   return db.one(`select * from all_tickets a inner join closed_tickets c on a.id = c.all_tickets_id where id = ${id}`)
+  //   .then((ticketData) => {
+  //     return ticketData;
+  //   });
+  // }
 
 }
 
