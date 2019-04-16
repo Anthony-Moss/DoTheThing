@@ -4,11 +4,12 @@ const allTickets = require('../models/allTickets');
 
 async function pendingTicketsPage(req, res) {
   const pending = await allTickets.getAll();
+  // console.log(pending);
 
   res.render("pendingTickets", {
     locals: {
       // firstName: theUser.firstName,
-      message: "View Pending Tickets Below!",
+      message: "Pending Tickets",
       pending
     }
   });
