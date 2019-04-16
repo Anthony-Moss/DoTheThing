@@ -11,6 +11,29 @@
 </head>
 
 <body>
+    <style>
+        body {
+          background-color:#232528;
+          color: white;
+          margin: 70px;
+        }
+    
+        .table {
+          background-color: #515052;
+          color: white;
+          border-radius: 25px;
+        }
+    
+        h2 {
+        color: rgb(41, 41, 41);
+        background-color: #FFFFFA;
+        width: 100%;
+        border-radius: 25px;
+        padding: 5px 20px 5px 17px;
+        margin-bottom: 20px;
+      }
+    
+    </style>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/login">Login</a></li>
@@ -32,15 +55,15 @@
       </tr>
     </thead>
     <tbody>
-      ${ join.map((ticket) => { return `
+      ${ tickets.map((ticket) => { return `
       <tr>
         <td>${ticket.id}</td>
         <td>${ticket.issue_desc}</td>
         <td>${ticket.time_posted}</td>
         <td>
-            <!-- <form action="/pendingTickets" method="POST">
-              <button type="submit" class="btn btn-info">Get Details</button>
-            </form> -->
+            <form action="/pendingTickets/${ticket.id}" method="GET">
+              <button type="submit" value="${ticket.id}" class="btn btn-info" onclick="sentToPendingAlert();">Pending</button>
+            </form>
 
         </td>
         ` }).join('') }

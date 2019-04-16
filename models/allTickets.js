@@ -30,18 +30,19 @@ class AllTickets {
     const second = timestamp.getSeconds().toString();
     const entireDate = `${realMonth}/${date}/${year}
                         ${hour}:${minute}:${second}`
-    return db.none(`insert into all_tickets (issue_desc, time_posted, ticket_status)
-                  values ('${issue_desc}', '${entireDate}', 0)`);
+    const not = null;
+    return db.none(`insert into all_tickets (issue_desc, time_posted, ticket_status, users_id)
+                  values ('${issue_desc}', '${entireDate}', 0, null)`);
   }
 
 
 
-static getTicketInfoByIssue(issueDesc) {
-  return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id where a.issue_desc = $1', [issueDesc])
-  .then((ticketData) => {
-    return ticketData;
-  });
-}
+// static getTicketInfoByIssue(issueDesc) {
+//   return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id where a.issue_desc = $1', [issueDesc])
+//   .then((ticketData) => {
+//     return ticketData;
+//   });
+// }
 
 static getTicketInfo(id) {
   return db.one('select * from all_tickets t where t.id = $1', [parseInt(id)])
@@ -50,20 +51,6 @@ static getTicketInfo(id) {
     return ticketData;
   });
 }
-
-static moveToOpen(allTicketsId, usersId) {
-  return db.none(`insert into open_tickets (all_tickets_id, users_id)
-  values ('${allTicketsId}', '${usersId}')`);
-}
-
-  // Will probably need to make seperate functions for each open, pending and completed tickets because they are all different so we can get details no matter
-  // what status the ticket is in
-  static getTicketInfoByIdIfOpen() {
-    return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id')
-      .then((ticketData) => {
-        return ticketData;
-      });
-  }
 
   // CHANGE STATUS TO 'PENDING'
 
@@ -90,6 +77,13 @@ static moveToOpen(allTicketsId, usersId) {
       return ticketData;
     });
   }
+
+  static getTicketPendingTimestamp() {
+  return db.any(`select p.*, a.issue_desc, a.time_posted from pending_tickets p inner join all_tickets a on p.all_tickets_id=a.id`)
+  .then(arrayOfPendingTicketsData => {
+    return arrayOfPendingTicketsData;
+  });
+}
 
 }
 

@@ -4,8 +4,6 @@ class Details {
   constructor(id, note_content) {
     this.id = id;
     this.note_content = note_content;
-    // this.users_id = users_id;
-    // this.all_tickets_id = all_tickets_id;
   }
 
   static getAll() {
