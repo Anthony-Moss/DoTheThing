@@ -10,15 +10,11 @@ class AllTickets {
 
     this.id = id;
     this.issueDesc = issue_desc;
-    // this.notes_id = notes_id;
-    // this.TIMESTAMP = TIMESTAMP;
-    // this.status 
   }
 
   static getAll() {
     return db.any(`select * from all_tickets`)
       .then((arrayOfTickets) => {
-        // console.log(arrayOfTickets);
         return arrayOfTickets
       });
   }
