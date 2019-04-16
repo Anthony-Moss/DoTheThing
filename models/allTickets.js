@@ -33,12 +33,12 @@ class AllTickets {
 
 
 
-static getTicketInfoByIssue(issueDesc) {
-  return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id where a.issue_desc = $1', [issueDesc])
-  .then((ticketData) => {
-    return ticketData;
-  });
-}
+// static getTicketInfoByIssue(issueDesc) {
+//   return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id where a.issue_desc = $1', [issueDesc])
+//   .then((ticketData) => {
+//     return ticketData;
+//   });
+// }
 
 static getTicketInfo(id) {
   return db.one('select * from all_tickets t where t.id = $1', [parseInt(id)])
@@ -47,20 +47,6 @@ static getTicketInfo(id) {
     return ticketData;
   });
 }
-
-static moveToOpen(allTicketsId, usersId) {
-  return db.none(`insert into open_tickets (all_tickets_id, users_id)
-  values ('${allTicketsId}', '${usersId}')`);
-}
-
-  // Will probably need to make seperate functions for each open, pending and completed tickets because they are all different so we can get details no matter
-  // what status the ticket is in
-  static getTicketInfoByIdIfOpen() {
-    return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id')
-      .then((ticketData) => {
-        return ticketData;
-      });
-  }
 
   // CHANGE STATUS TO 'PENDING'
 
