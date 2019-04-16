@@ -4,8 +4,6 @@ class Details {
   constructor(id, note_content) {
     this.id = id;
     this.note_content = note_content;
-    // this.users_id = users_id;
-    // this.all_tickets_id = all_tickets_id;
   }
 
   static getAll() {
@@ -29,7 +27,11 @@ class Details {
     const realMonth = month.toString();
     const date = timestamp.getDate().toString();
     const year = timestamp.getFullYear().toString();
-    const entireDate = `${realMonth}/ ${date}/ ${year}`
+    const hour = timestamp.getHours().toString();
+    const minute = timestamp.getMinutes().toString();
+    const second = timestamp.getSeconds().toString();
+    const entireDate = `${realMonth}/${date}/${year}
+                        ${hour}:${minute}:${second}`
     return db.none('insert into notes (note_content, users_id, all_tickets_id, time_posted) values ($1, $2, $3, $4)', [notecontent, users_id, all_tickets_id, entireDate]); 
   }
 

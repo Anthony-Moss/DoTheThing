@@ -3,13 +3,13 @@ const pendingTickets = require("../models/pendingTickets");
 const allTickets = require('../models/allTickets');
 
 async function pendingTicketsPage(req, res) {
-  const pending = await allTickets.getAll();
+  const pend = 1;
+  const pending = await allTickets.getOpenTickets(pend);
 
   res.render("pendingTickets", {
     locals: {
-      // firstName: theUser.firstName,
       message: "View Pending Tickets Below!",
-      pending
+      pending: pending
     }
   });
 }
@@ -20,9 +20,8 @@ async function updateOpenTicketsPage(req, res) {
   console.log(mainTicketId);
   await allTickets.updateToPending(mainTicketId);
 
-  res.redirect('/allTickets');
+  res.redirect('/openTickets');
 }
-
 
 module.exports = {
   pendingTicketsPage,

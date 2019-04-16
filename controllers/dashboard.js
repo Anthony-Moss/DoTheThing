@@ -5,7 +5,7 @@ async function loadDashboardPage(req, res) {
   const pending = 1;
   const completed = 2;
   const theUser = await User.getById(req.session.user);
-  const allOpenTickets = await allTickets.getTicketInfoByUserIdAndStatus(theUser.id, open);
+  const allOpenTickets = await allTickets.getOpenTickets(open);
   const allUserPendingTickets = await allTickets.getTicketInfoByUserIdAndStatus(theUser.id, pending);
   const allUserCompletedTickets = await allTickets.getTicketInfoByUserIdAndStatus(theUser.id, completed)
 
@@ -19,6 +19,16 @@ async function loadDashboardPage(req, res) {
     }
   });
 }
+
+async function updateOpenTicketsPage(req, res) {
+  console.log('The id is ', req.params);
+  const mainTicketId = parseInt(req.params.id);
+  console.log(mainTicketId);
+  await allTickets.updateToPending(mainTicketId);
+
+  res.redirect(`/dashboard`);
+}
 module.exports = {
-  loadDashboardPage
+  loadDashboardPage,
+  updateOpenTicketsPage
 };

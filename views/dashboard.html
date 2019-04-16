@@ -20,18 +20,17 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body>
 
   <style>
     body {
       background-color:#232528;
       color: white;
-      margin: 70px;
+      margin: 80px;
+      align-items: center;
     }
 
     .table {
       background-color: #515052;
-      border-radius: 25px;
     }
 
     h2 {
@@ -43,27 +42,41 @@
     margin-bottom: 20px;
   }
 
+  img {
+        width: 150px; 
+        height: 50px;
+    }
+
+  .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        text-align:right;
+        margin: 0px 150px 20px 0px;
+    }
+
   </style>
 
 <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+
+<body>
   
-          function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-          }
-          
-          function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-          }
-          
-          </script>
-          
           
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="/dashboard">Dashboard</a>
-            <a href="/openTickets">Open</a>
+            <a href="/allTickets">Open</a>
             <a href="/pendingTickets">Pending</a>
             <a href="/completedTickets">Completed</a>
             <a href="/">Logout</a>
@@ -72,6 +85,8 @@
           <div id="main">
             <span style="font-size:50px;cursor:pointer;display:flex;justify-content:flex-start;color:#FF7700;" onclick="openNav()">&#9776;
             </span>
+
+<body>
 
 
           <h1>Welcome back, ${firstName}!</h1>
@@ -97,12 +112,12 @@
             <td>${openIssue.issue_desc}</td>
             <td>${openIssue.time_posted}</td>
             <td>
-              <form action="/details/${openIssue.id}" method="GET">
+              <form action="/details/${openIssue.id}" method="POST">
                 <button type="submit" value="${openIssue.id}" class="btn btn-info">Get Details</button>
               </form>
             </td>
             <td>
-                <form action="/pendingTickets" method="POST">
+                <form action="/pendingTickets/${openIssue.id}" method="GET">
                   <button type="submit" value="${openIssue.id}" class="btn btn-info">Assign task</button>
                 </form>
               </td>
@@ -138,7 +153,7 @@
               </form>
             </td>
             <td>
-                <form action="/pendingTickets" method="POST">
+                <form action="/completedTickets/${allOpenTickets.id}" method="GET">
                   <button type="submit" value="${allOpenTickets.id}" class="btn btn-info">Close</button>
                 </form>
               </td>
@@ -175,6 +190,10 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="footer">
+          <img src="/static/images/ticket-icon.png">
+          </div>
 
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
