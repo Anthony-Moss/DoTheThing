@@ -21,7 +21,7 @@ async function updateCompletedTicketsPage(req, res) {
   console.log(mainTicketId);
   await allTickets.updateToCompleted(mainTicketId);
 
-  res.redirect('/pendingTickets');
+  res.redirect('/dashboard');
 }
 
 module.exports = {

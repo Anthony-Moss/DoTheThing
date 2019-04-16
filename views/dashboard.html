@@ -76,7 +76,6 @@
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="/dashboard">Dashboard</a>
-            <a href="/allTickets">Open</a>
             <a href="/pendingTickets">Pending</a>
             <a href="/completedTickets">Completed</a>
             <a href="/">Logout</a>
@@ -118,7 +117,7 @@
             </td>
             <td>
                 <form action="/pendingTickets/${openIssue.id}" method="GET">
-                  <button type="submit" value="${openIssue.id}" class="btn btn-info">Assign task</button>
+                  <button type="submit" value="${openIssue.id}" class="btn btn-info">Assign To Me</button>
                 </form>
               </td>
               ` }).join('') }
@@ -171,6 +170,7 @@
             <th scope="col">Issue Description</th>
             <th scope="col">Time Posted</th>
             <th scope="col">Details</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -185,6 +185,11 @@
               <form action="/details/${completedIssue.id}" method="GET">
                 <button type="submit" value="${completedIssue.id}" class="btn btn-info">Get Details</button>
               </form>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info" disabled>CLOSED</button>
+
+
             </td>
             ` }).join('') }
           </tr>

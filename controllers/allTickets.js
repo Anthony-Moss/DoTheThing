@@ -18,12 +18,12 @@ async function allTicketsPage(req, res) {
 async function submitRequest(req, res) {
   // const theUser = await User.getById(req.session.user);
 
-  const newTicket = await allTickets.newIssueSubmitted(req.body.issue_desc);
+  await allTickets.newIssueSubmitted(req.body.issue_desc);
   // console.log(newTicket);
   // newTicket;
   const newRequests = new allTickets(req.body.issue_desc);
 
-  if (newTicket) {
+  if (newRequests) {
     res.render("thankyou", {
       locals: {
         message: "Welcome!"

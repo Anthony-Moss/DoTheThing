@@ -21,6 +21,7 @@ async function loadDashboardPage(req, res) {
 }
 
 async function updateOpenTicketsPage(req, res) {
+  const theUser = await User.getById(req.session.user);
   console.log('The id is ', req.params);
   const mainTicketId = parseInt(req.params.id);
   console.log(mainTicketId);

@@ -8,19 +8,22 @@ async function pendingTicketsPage(req, res) {
 
   res.render("pendingTickets", {
     locals: {
-      message: "View Pending Tickets Below!",
+      message: "All Pending Tickets",
       pending: pending
     }
   });
 }
 
 async function updateOpenTicketsPage(req, res) {
-  console.log('The id is ', req.params);
+  const theUser = await User.getById(req.session.user);
+  const userId = theUser.id
+  console.log('LOOK AT OUR ID ', userId);
+  // console.log('The id is ', req.params);
   const mainTicketId = parseInt(req.params.id);
   console.log(mainTicketId);
-  await allTickets.updateToPending(mainTicketId);
+  await allTickets.updateToPending(userId, mainTicketId);
 
-  res.redirect('/openTickets');
+  res.redirect('/dashboard');
 }
 
 module.exports = {

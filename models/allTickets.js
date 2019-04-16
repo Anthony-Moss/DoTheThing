@@ -54,13 +54,17 @@ static getTicketInfo(id) {
 
   // CHANGE STATUS TO 'PENDING'
 
- static async updateToPending(id){
-  return await db.none('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
+ static async updateToPending(userId, ticketId){
+  return await db.none('UPDATE all_tickets SET ticket_status = 1, users_id = $1 WHERE id = $2', [userId, ticketId])
   }
+
+
 
   static async updateToCompleted(id){
     return await db.none('UPDATE all_tickets SET ticket_status = 2 WHERE id = $1', [id])
     }
+
+  // static async 
 
 
   static getOpenTickets(ticket_status) {
