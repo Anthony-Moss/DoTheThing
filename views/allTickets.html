@@ -6,109 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Ticket Page</title>
-  <link rel="stylesheet" href="static/styling/sidenav.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 </head>
 
-<style>
-
-  body {
-    margin: 50px;
-    background: #232528;
-    color: white;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-  }
-
-  .header {
-    /* display: flex; */
-    /* justify-content: space-between; */
-    margin-bottom: 50px;
-  }
-
-  h2 {
-    color: white;
-    background-color: gray;
-    width: 100%;
-    border-radius: 25px;
-    padding: 5px 20px 5px 17px;
-    margin-bottom: 20px;
-  }
-  
-  h5 {
-    font-family: 'Avenir';
-    color: white;
-    font-size: 36px;
-    letter-spacing: -4px;
-    margin: 30px 0px 0px 0px;
-    text-align: center;
-  }
-
-  .thing-text {
-    font-style: oblique;
-    color: orange;
-    transition: letter-spacing 2s;
-  }
-
-  .thing-text:hover {
-    letter-spacing: 10px;
-  }
-
-  .table {
-    background-color: #515052;
-  }
-  </style>
-
-<script>
-  
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
-    }
-    
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-      document.getElementById("main").style.marginLeft = "0";
-    }
-    
-    </script>
-    
-   
-    
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="/dashboard">Dashboard</a>
-      <a href="/allTickets">Open</a>
-      <a href="/pendingTickets">Pending</a>
-      <a href="/completedTickets">Completed</a>
-      <a href='/'>Logout</a>
-    </div>
-    
-    <div id="main">
-      <span style="font-size:50px;cursor:pointer;display:flex;justify-content:flex-start; color: #FF7700;" onclick="openNav()">&#9776;
-      </span>
-
-    
-      
-      <body>
-        
-
-  <h2>All Tickets</h2>
+<body>
+  <h1>${message}</h1>
 
 
-
-  <!-- <nav aria-label="breadcrumb">
+  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/login">Login</a></li>
       <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
       <li class="breadcrumb-item active" aria-current="page"><a href="/allTickets">All Tickets</a></li>
     </ol>
-  </nav> -->
+  </nav>
 
 
-  <table class="table table-dark">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Id</th>
@@ -133,6 +48,7 @@
           </form>
         </td>
         <td>
+
             <form action="/pendingTickets/${issue.id}" method="GET">
               <button type="submit" value="${issue.id}" class="btn btn-info" onclick="sentToPendingAlert();">Pending</button>
             </form>
@@ -165,6 +81,7 @@
         alert('SENT TO PENDING!')
       }
     </script>
+            
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

@@ -17,11 +17,10 @@ async function allTicketsPage(req, res) {
 
 async function submitRequest(req, res) {
   const theUser = await User.getById(req.session.user);
-  const newTicket = await allTickets.newIssueSubmitted(req.body.issue_desc);
-  newTicket;
-  const theDesc = (req.body.issue_desc);
-  console.log(theDesc)
-  const ticketData = await allTickets.getTicketInfoByIssue(theDesc);
+
+  await allTickets.newIssueSubmitted(req.body.issue_desc);
+  // console.log(newTicket);
+  // newTicket;
   const newRequests = new allTickets(req.body.issue_desc);
 
   if (newRequests) {
