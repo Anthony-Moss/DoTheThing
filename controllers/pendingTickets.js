@@ -8,7 +8,6 @@ async function pendingTicketsPage(req, res) {
 
   res.render("pendingTickets", {
     locals: {
-      // firstName: theUser.firstName,
       message: "View Pending Tickets Below!",
       pending: pending
     }

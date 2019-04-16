@@ -23,8 +23,7 @@ async function loadDetailsPage(req, res) {
         message: ticketId,
         firstName: user.first_name,
         ticketDesc: "Tickets desc will go here",
-        ticketCreated: ticketId.timestamp,
-        detail: detailsArray
+        detail: detailsArray,
         }
     });
     }

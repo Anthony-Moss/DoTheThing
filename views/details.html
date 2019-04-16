@@ -12,16 +12,17 @@
         <style>
 
                 body {
-                  background-color: rgb(116, 116, 116);
-                  /* color: white; */
+                  background-color: #232528;
+                  color: white;
                   margin: 70px;
+                  align-items: center;
                   /* background-color: #2D2D2D; */
                   /* color: white; */
                 }
 
                 .btn {
                   color: white;
-                  background-color: orange;
+                  background-color: #FF7700;
                 }                
           
                 .sidenav {
@@ -47,7 +48,11 @@
                 }
           
                 .sidenav a:hover {
-                  color: orange;
+                  color: rgba(255, 119, 0, 0.646);
+                }
+
+                .table {
+                  background-color: #515052;
                 }
           
                 .sidenav .closebtn {
@@ -77,11 +82,11 @@
                     <a href="/allTickets">Open</a>
                     <a href="/pendingTickets">Pending</a>
                     <a href="/completedTickets">Completed</a>
-                    <a href="/homepage">Logout</a>
+                    <a href="/">Logout</a>
                   </div>
             
                 <div id="main">
-                  <span style="font-size:50px;cursor:pointer;display:flex;justify-content:flex-start;" onclick="openNav()">&#9776; </span>
+                  <span style="font-size:50px;cursor:pointer;display:flex;justify-content:flex-start;color: #FF7700;" onclick="openNav()">&#9776; </span>
               
                 
                 <script>
@@ -100,18 +105,14 @@
 
     <h1>Ticket Details</h1>
 
-    <h2>${message}</h2>
+    <h3>Description should go here. </h3>
     
-    <h3>${firstName}</h3>
-
-
-    <table class="table">
+    <table class="table table-dark">
             <thead>
               <tr>
-                <th scope="col">#</th>
+                <th scope="col">Id</th>
                 <th scope="col">Notes</th>
                 <th scope="col">User</th>
-                <th scope="col">All Tickets Id</th>
                 <th scope="col">Time Posted</th>
               </tr>
             </thead>
@@ -120,8 +121,7 @@
               <tr>
                 <td>${note.id}</td>
                 <td>${note.note_content}</td>
-                <td>${note.users_id}</td>
-                <td>${note.all_tickets_id}</td>
+                <td>${firstName}</td>
                 <td>${note.time_posted}</td>
                 ` }).join('') }
               </tr>

@@ -25,7 +25,11 @@ class AllTickets {
     const realMonth = month.toString();
     const date = timestamp.getDate().toString();
     const year = timestamp.getFullYear().toString();
-    const entireDate = `${realMonth}/ ${date}/ ${year}`;
+    const hour = timestamp.getHours().toString();
+    const minute = timestamp.getMinutes().toString();
+    const second = timestamp.getSeconds().toString();
+    const entireDate = `${realMonth}/${date}/${year}
+                        ${hour}:${minute}:${second}`
     const not = null;
     return db.none(`insert into all_tickets (issue_desc, time_posted, ticket_status, users_id)
                   values ('${issue_desc}', '${entireDate}', 0, null)`);
