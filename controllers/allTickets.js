@@ -18,14 +18,11 @@ async function allTicketsPage(req, res) {
 
 async function submitRequest(req, res) {
   const theUser = await User.getById(req.session.user);
-  const newTicket = await allTickets.newIssueSubmitted(req.body.issue_desc);
+  await allTickets.newIssueSubmitted(req.body.issue_desc);
   // console.log(newTicket);
-  newTicket;
-  const theDesc = (req.body.issue_desc);
-  console.log(theDesc)
-  const ticketData = await allTickets.getTicketInfoByIssue(theDesc);
+  // newTicket;
   const newRequests = new allTickets(req.body.issue_desc);
-  // const moveToOpen = await allTickets.moveToOpen(newTicket.id, theUser.id)
+
 
   if (newRequests) {
     res.render("thankyou", {
@@ -40,5 +37,4 @@ async function submitRequest(req, res) {
 module.exports = {
   allTicketsPage,
   submitRequest,
-  // updateTicketList
 };

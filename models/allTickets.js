@@ -30,8 +30,8 @@ class AllTickets {
     const date = timestamp.getDate().toString();
     const year = timestamp.getFullYear().toString();
     const entireDate = `${realMonth}/ ${date}/ ${year}`
-    return db.none(`insert into all_tickets (issue_desc, time_posted)
-                  values ('${issue_desc}', '${entireDate}')`);
+    return db.none(`insert into all_tickets (issue_desc, time_posted, ticket_status)
+                  values ('${issue_desc}', '${entireDate}', 0)`);
   }
 
 
@@ -61,7 +61,7 @@ static getTicketInfo(id) {
   }
 
   // CHANGE STATUS TO 'PENDING'
- static updateToPending(id){
+  static updateToPending(id){
   return db.one('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
   }
 

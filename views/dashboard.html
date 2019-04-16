@@ -103,7 +103,7 @@
             </td>
             <td>
                 <form action="/pendingTickets" method="POST">
-                  <button type="submit" value="${openIssue.id}" class="btn btn-info">pending</button>
+                  <button type="submit" value="${openIssue.id}" class="btn btn-info">Assign task</button>
                 </form>
               </td>
               ` }).join('') }
@@ -139,11 +139,11 @@
             </td>
             <td>
                 <form action="/pendingTickets" method="POST">
-                  <button type="submit" value="${allOpenTickets.id}" class="btn btn-info">pending</button>
+                  <button type="submit" value="${allOpenTickets.id}" class="btn btn-info">Close</button>
                 </form>
               </td>
+              ` }).join('') }
           </tr>
-            ` }).join('') }
         </tbody>
       </table>
 
@@ -156,7 +156,6 @@
             <th scope="col">Issue Description</th>
             <th scope="col">Time Posted</th>
             <th scope="col">Details</th>
-            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -172,13 +171,8 @@
                 <button type="submit" value="${completedIssue.id}" class="btn btn-info">Get Details</button>
               </form>
             </td>
-            <td>
-                <form action="/pendingTickets" method="POST">
-                  <button type="submit" value="${completedIssue.id}" class="btn btn-info">pending</button>
-                </form>
-              </td>
-              ` }).join('') }
-            </tr>
+            ` }).join('') }
+          </tr>
         </tbody>
       </table>
 
