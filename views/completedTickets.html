@@ -26,17 +26,22 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Issue Description</th>
-        <th scope="col">Time Posted</th>
+        <th scope="col">Ticket Id</th>
+        <th scope="col">Ticket Description</th>
+        <th scope="col">Details</th>
       </tr>
     </thead>
     <tbody>
-      ${ join.map((ticket) => { return `
+      ${ completedTickets.filter(ticket => ticket.ticket_status === 2)
+        .map((ticket) => { return `
       <tr>
         <td>${ticket.id}</td>
         <td>${ticket.issue_desc}</td>
-        <td>${ticket.time_ended}</td>
+        <td>
+            <form action="/details/${ticket.id}" method="GET">
+              <button type="submit" value="${ticket.id}" class="btn btn-info">Get Details</button>
+            </form>
+          </td>
         ` }).join('') }
       </tr>
     </tbody>

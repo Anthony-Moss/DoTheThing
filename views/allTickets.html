@@ -120,7 +120,8 @@
     </thead>
     <tbody>
       ${
-      tickets.map((issue) => {
+      tickets.filter(ticket => ticket.ticket_status === 0)
+      .map((issue) => {
       return `
       <tr>
         <th scope="row">${issue.id}</th>
@@ -132,33 +133,18 @@
           </form>
         </td>
         <td>
-            <form action="/pendingTickets" method="POST">
-              <button type="submit" value="${issue.id}" class="btn btn-info">pending</button>
+            <form action="/pendingTickets/${issue.id}" method="GET">
+              <button type="submit" value="${issue.id}" class="btn btn-info" onclick="sentToPendingAlert();">Pending</button>
             </form>
 
         </td>
-
-          <!-- <div class="dropdown">
-            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Status
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <div 
-              action="/details/${issue.id}"
-              method="GET">
-              <button type="submit">Pending</button>
-            </div>
+        
+      </tr> 
       
-              <a class="dropdown-item" href="#">Complete</a>
-            </div>
-          </div>
-        </td>
         `
         }).join('')
         }
 
-      </tr> -->
     </tbody>
   </table>
 
@@ -173,6 +159,12 @@
         document.getElementById("main").style.marginLeft= "0";
       }
   </script> -->
+
+  <script>
+      function sentToPendingAlert(){
+        alert('SENT TO PENDING!')
+      }
+    </script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

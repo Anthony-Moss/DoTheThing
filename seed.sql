@@ -7,8 +7,8 @@ insert into all_tickets
     (issue_desc, ticket_status)
     VALUES
     ('2nd floor stairwell door does not unlock', 0),
-    ('Elavator doors keep opening and closing', 1),
-    ('4th floor coffee machine is broken', 2)
+    ('Elavator doors keep opening and closing', 0),
+    ('4th floor coffee machine is broken', 0)
     
 ;
 insert into open_tickets
