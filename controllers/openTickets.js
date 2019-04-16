@@ -1,12 +1,12 @@
 
 // const db = require('./conn');
 const User = require("../models/user");
-const openTickets = require("../models/openTickets");
+const allTickets = require("../models/allTickets");
 
 async function openTicketsPage(req, res) {
   const theUser = await User.getById(req.session.user);
   const arrayOfTickets = await openTickets.getAll();
-  const joinTables = await openTickets.getByAllTicketsId();
+  const joinTables = await allTickets.getByAllTicketsId();
 
   res.render("openTickets", { //could put 'dashboard' here
     locals: {

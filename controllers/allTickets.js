@@ -16,18 +16,17 @@ async function allTicketsPage(req, res) {
 }
 
 async function submitRequest(req, res) {
-  const theUser = await User.getById(req.session.user);
+  // const theUser = await User.getById(req.session.user);
 
-  await allTickets.newIssueSubmitted(req.body.issue_desc);
+  const newTicket = await allTickets.newIssueSubmitted(req.body.issue_desc);
   // console.log(newTicket);
   // newTicket;
   const newRequests = new allTickets(req.body.issue_desc);
 
-  if (newRequests) {
+  if (newTicket) {
     res.render("thankyou", {
       locals: {
-        message: "Welcome!",
-        firstName: theUser.first_name
+        message: "Welcome!"
       }
     });
   }

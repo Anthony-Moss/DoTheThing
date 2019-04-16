@@ -165,11 +165,11 @@ class User {
   //         return arrayOfReviewInstances;
   //       });
 }
-async function demo() {
-  const user = await User.getByEmail("am123@me.com");
-  user.setPassword("waffles");
-  await user.save();
-  console.log("you did the thing");
-}
-demo();
+// async function demo() {
+//   const user = await User.getByEmail("am123@me.com");
+//   user.setPassword("waffles");
+//   await user.save();
+//   console.log("you did the thing");
+// }
+// demo();
 module.exports = User;
