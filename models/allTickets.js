@@ -51,22 +51,6 @@ static getTicketInfo(id) {
   });
 }
 
-static moveToPending(allTicketsId, usersId) {
-  // const timestamp = new Date();
-  // const month = timestamp.getMonth() + 1;
-  // const realMonth = month.toString();
-  // const date = timestamp.getDate().toString();
-  // const year = timestamp.getFullYear().toString();
-  // const timeStarted = `${realMonth}/ ${date}/ ${year}`
-  return db.none(`INSERT INTO pending_tickets (all_tickets_id, users_id)
-  values ('${allTicketsId}', '${usersId}')`);
-}
-
-static moveToOpen(allTicketsId, usersId) {
-  return db.none(`insert into open_tickets (all_tickets_id, users_id)
-  values ('${allTicketsId}', '${usersId}')`);
-}
-
   // Will probably need to make seperate functions for each open, pending and completed tickets because they are all different so we can get details no matter
   // what status the ticket is in
   static getTicketInfoByIdIfOpen() {
@@ -81,14 +65,19 @@ static moveToOpen(allTicketsId, usersId) {
   return db.one('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
   }
 
-  // return db.one('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id]
-
   static getOpenTickets(ticket_status) {
     return db.any('select * from all_tickets where ticket_status = $1', [ticket_status])
       .then((ticketData) => {
         console.log(ticketData)
         return ticketData;
       });
+  }
+
+  static getTicketInfoByUserIdAndStatus(userId, ticket_status) {
+    return db.any('select * from all_tickets where users_id = $1 and ticket_status = $2', [userId, ticket_status])
+    .then((ticketData) => {
+      return ticketData;
+    });
   }
 
   // static getTicketInfoByIdIfPending(id) {
