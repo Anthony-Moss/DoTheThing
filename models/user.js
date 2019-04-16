@@ -60,6 +60,7 @@ class User {
         return data.id;
       });
   }
+  
 
   // "static" means that the function is something
   // the class can do, but an instance cannot.
