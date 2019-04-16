@@ -6,10 +6,10 @@ insert into users
 insert into all_tickets 
     (issue_desc, ticket_status, users_id)
     VALUES
+
     ('2nd floor stairwell door does not unlock', 0, 1),
     ('Elavator doors keep opening and closing', 1, 1),
-    ('4th floor coffee machine is broken', 2, 1)
-    
+    ('4th floor coffee machine is broken', 2, 1)    
 ;
 insert into open_tickets
     (all_tickets_id)

@@ -47,6 +47,11 @@ static getTicketInfo(id) {
   });
 }
 
+static moveToOpen(allTicketsId, usersId) {
+  return db.none(`insert into open_tickets (all_tickets_id, users_id)
+  values ('${allTicketsId}', '${usersId}')`);
+}
+
   // Will probably need to make seperate functions for each open, pending and completed tickets because they are all different so we can get details no matter
   // what status the ticket is in
   static getTicketInfoByIdIfOpen() {
@@ -57,9 +62,15 @@ static getTicketInfo(id) {
   }
 
   // CHANGE STATUS TO 'PENDING'
-  static updateToPending(id){
-  return db.one('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
+
+ static async updateToPending(id){
+  return await db.none('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
   }
+
+  static async updateToCompleted(id){
+    return await db.none('UPDATE all_tickets SET ticket_status = 2 WHERE id = $1', [id])
+    }
+
 
   static getOpenTickets(ticket_status) {
     return db.any('select * from all_tickets where ticket_status = $1', [ticket_status])
@@ -75,20 +86,6 @@ static getTicketInfo(id) {
       return ticketData;
     });
   }
-
-  // static getTicketInfoByIdIfPending(id) {
-  //   return db.one(`select * from all_tickets a inner join pending_tickets p on a.id = p.all_tickets_id where id = ${id}`)
-  //   .then((ticketData) => {
-  //     return ticketData;
-  //   });
-  // }
-
-  // static getTicketInfoByIdIfClosed(id) {
-  //   return db.one(`select * from all_tickets a inner join closed_tickets c on a.id = c.all_tickets_id where id = ${id}`)
-  //   .then((ticketData) => {
-  //     return ticketData;
-  //   });
-  // }
 
 }
 

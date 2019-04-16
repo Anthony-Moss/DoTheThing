@@ -5,5 +5,5 @@ const pendingTicketsRoutes = Router();
 const { pendingTicketsPage, updateOpenTicketsPage } = require("../controllers/pendingTickets");
 
 pendingTicketsRoutes.get("/", pendingTicketsPage);
-pendingTicketsRoutes.post("/", updateOpenTicketsPage);
+pendingTicketsRoutes.get("/:id", updateOpenTicketsPage);
 module.exports = pendingTicketsRoutes;

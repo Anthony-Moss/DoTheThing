@@ -3,8 +3,7 @@ const allTickets = require("../models/allTickets");
 
 async function allTicketsPage(req, res) {
   const theUser = await User.getById(req.session.user);
-  //const arrayOfTickets = await allTickets.getAll();
-  const arrayOfTickets = await allTickets.getOpenTickets(1);
+  const arrayOfTickets = await allTickets.getAll();
 
   res.render("allTickets", {
     locals: {
@@ -18,11 +17,11 @@ async function allTicketsPage(req, res) {
 
 async function submitRequest(req, res) {
   const theUser = await User.getById(req.session.user);
+
   await allTickets.newIssueSubmitted(req.body.issue_desc);
   // console.log(newTicket);
   // newTicket;
   const newRequests = new allTickets(req.body.issue_desc);
-
 
   if (newRequests) {
     res.render("thankyou", {
