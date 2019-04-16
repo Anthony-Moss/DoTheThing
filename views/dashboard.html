@@ -97,12 +97,12 @@
             <td>${openIssue.issue_desc}</td>
             <td>${openIssue.time_posted}</td>
             <td>
-              <form action="/details/${openIssue.id}" method="GET">
+              <form action="/details/${openIssue.id}" method="POST">
                 <button type="submit" value="${openIssue.id}" class="btn btn-info">Get Details</button>
               </form>
             </td>
             <td>
-                <form action="/pendingTickets" method="POST">
+                <form action="/pendingTickets/${openIssue.id}" method="GET">
                   <button type="submit" value="${openIssue.id}" class="btn btn-info">Assign task</button>
                 </form>
               </td>
@@ -138,7 +138,7 @@
               </form>
             </td>
             <td>
-                <form action="/pendingTickets" method="POST">
+                <form action="/completedTickets/${allOpenTickets.id}" method="GET">
                   <button type="submit" value="${allOpenTickets.id}" class="btn btn-info">Close</button>
                 </form>
               </td>

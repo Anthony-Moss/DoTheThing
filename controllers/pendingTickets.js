@@ -20,7 +20,7 @@ async function updateOpenTicketsPage(req, res) {
   console.log(mainTicketId);
   await allTickets.updateToPending(mainTicketId);
 
-  res.redirect('/allTickets');
+  res.redirect('/openTickets');
 }
 
 

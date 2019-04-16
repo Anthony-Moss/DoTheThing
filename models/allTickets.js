@@ -88,6 +88,13 @@ static moveToOpen(allTicketsId, usersId) {
     });
   }
 
+  static getTicketPendingTimestamp() {
+  return db.any(`select p.*, a.issue_desc, a.time_posted from pending_tickets p inner join all_tickets a on p.all_tickets_id=a.id`)
+  .then(arrayOfPendingTicketsData => {
+    return arrayOfPendingTicketsData;
+  });
+}
+
 }
 
 module.exports = AllTickets;

@@ -19,6 +19,16 @@ async function loadDashboardPage(req, res) {
     }
   });
 }
+
+async function updateOpenTicketsPage(req, res) {
+  console.log('The id is ', req.params);
+  const mainTicketId = parseInt(req.params.id);
+  console.log(mainTicketId);
+  await allTickets.updateToPending(mainTicketId);
+
+  res.redirect(`/dashboard`);
+}
 module.exports = {
-  loadDashboardPage
+  loadDashboardPage,
+  updateOpenTicketsPage
 };
