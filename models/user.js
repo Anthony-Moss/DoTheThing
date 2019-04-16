@@ -20,11 +20,16 @@ class User {
     return db.result("delete from users where id=$1", [id]);
   }
 
-  // static setPassword(newPassword) {
-  //   const salt = bcrpyt.genSaltSync(10);
-  //   const hash = bcrpyt.hashSync(newPassword, salt);
-  //   this.password = hash;
-  // }
+  setPassword(newPassword) {
+    const salt = bcrpyt.genSaltSync(10);
+    const hash = bcrpyt.hashSync(newPassword, salt);
+    this.password = hash;
+  }
+  static hashPass(newPassword) {
+    const salt = bcrpyt.genSaltSync(10);
+    const hash = bcrpyt.hashSync(newPassword, salt);
+    return hash;
+  }
 
   static add(userData) {
     //do an insert into the database
@@ -34,7 +39,7 @@ class User {
     const lastName = escapeHtml(userData.last_name);
     const email = escapeHtml(userData.email);
     const aPassword = escapeHtml(userData.password);
-    // const hashed = User.setPassword(userData.password); 
+    const hashed = User.hashPass(aPassword);
     return db
       .one(
         `
@@ -48,30 +53,22 @@ class User {
           firstName,
           lastName,
           email,
-          aPassword
+          hashed
         ]
       )
       .then(data => {
-        //console.log("you did the thing! good job")
         return data.id;
       });
-    // .catch(() => {
-    //   return null; //signal an invalid value
-    // });
   }
 
   // "static" means that the function is something
   // the class can do, but an instance cannot.
 
   static getById(id) {
-    // .any always returns an array
-    // Instead, we'll use .one
-
     return db
       .one(`select * from users where id=${id}`)
       .then(userData => {
-        //You *must* use the `new` keyword
-        // when you call a JavaScript constuctor
+        //You *must* use the `new` keyword when you call a JavaScript constuctor
         const userInstance = new User(
           userData.id,
           userData.first_name,
@@ -117,11 +114,11 @@ class User {
   }
 
 
-  setPassword(newPassword) {
-    const salt = bcrpyt.genSaltSync(10);
-    const hash = bcrpyt.hashSync(newPassword, salt);
-    this.password = hash;
-  }
+  // setPassword(newPassword) {
+  //   const salt = bcrpyt.genSaltSync(10);
+  //   const hash = bcrpyt.hashSync(newPassword, salt);
+  //   this.password = hash;
+  // }
 
 
   static getByEmail(email) {
