@@ -45,7 +45,7 @@ class AllTickets {
 // }
 
 static getTicketInfo(id) {
-  return db.one('select * from all_tickets t where t.id = $1', [parseInt(id)])
+  return db.one('select * from all_tickets t where t.id = $1', [id])
   .then((ticketData) => {
     console.log(ticketData);
     return ticketData;

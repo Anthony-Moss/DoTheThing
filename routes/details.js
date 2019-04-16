@@ -3,7 +3,7 @@ const detailsRouter = express.Router();
 
 const { loadDetailsPage, renderNewDetailsAfterSubmission } = require("../controllers/details");
 
-detailsRouter.get("/:id", loadDetailsPage)
+detailsRouter.get("/:id", renderNewDetailsAfterSubmission);
 detailsRouter.post("/:id", renderNewDetailsAfterSubmission);
 
 module.exports = detailsRouter;

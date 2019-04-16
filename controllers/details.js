@@ -12,6 +12,7 @@ async function loadDetailsPage(req, res) {
     console.log('user ', user);
     const ticketId = req.params.id;
     const ticket = await allTickets.getTicketInfo(ticketId);
+    const description = allTickets.issue_desc;
     console.log('Ticket : ', ticket);
     const openTicket = new openTickets(req.body.id);
     const detailsArray = await details.getNotesByTicketId(ticketId);
@@ -22,8 +23,8 @@ async function loadDetailsPage(req, res) {
         ticketId,
         message: ticketId,
         firstName: user.first_name,
-        ticketDesc: "Tickets desc will go here",
-        detail: detailsArray,
+        ticketDesc: description,
+        detail: detailsArray
         }
     });
     }
@@ -33,6 +34,10 @@ async function loadDetailsPage(req, res) {
 async function renderNewDetailsAfterSubmission(req, res) {
     const user = await User.getById(req.session.user);
     const ticketId = req.params.id;
+    console.log('THIS IS THE ID! ', ticketId);
+    const allTheTickets = await allTickets.getTicketInfo(ticketId);
+    const description = allTheTickets.issue_desc;
+    console.log('HERE IS THE DESC ', description);
     await details.newDetailSubmitted(req.body.note_content, user.id, ticketId, req.body.time_posted);
     const detailsArray = await details.getNotesByTicketId(ticketId);
     const newDetails = new details(req.body.note_content, req.body.users_id, req.body.all_tickets_id, req.body.time_posted);
@@ -43,7 +48,7 @@ async function renderNewDetailsAfterSubmission(req, res) {
         ticketId,
         message: ticketId,
         firstName: user.first_name,
-        ticketDesc: "Tickets desc will go here",
+        ticketDesc: description,
         ticketCreated: ticketId.timestamp,
         detail: detailsArray
         }
