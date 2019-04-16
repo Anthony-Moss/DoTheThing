@@ -33,15 +33,15 @@
     </thead>
     <tbody>
       ${ completedTickets.filter(ticket => ticket.ticket_status === 2)
-        .map((ticket) => { return `
+      .map((ticket) => { return `
       <tr>
         <td>${ticket.id}</td>
         <td>${ticket.issue_desc}</td>
         <td>
-            <form action="/details/${ticket.id}" method="GET">
-              <button type="submit" value="${ticket.id}" class="btn btn-info">Get Details</button>
-            </form>
-          </td>
+          <form action="/details/${ticket.id}" method="GET">
+            <button type="submit" value="${ticket.id}" class="btn btn-info">Get Details</button>
+          </form>
+        </td>
         ` }).join('') }
       </tr>
     </tbody>
@@ -58,7 +58,6 @@
   </div>
 
 
-  <script src="/socket.io/socket.io.js"></script>
   <script src="js/message.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
