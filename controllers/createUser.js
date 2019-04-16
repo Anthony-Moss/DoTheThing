@@ -24,7 +24,6 @@ async function checkIfEmailInUse(req, res) {
     let theUserData = req.body;
     let theEmail = escapeHtml(req.body.email);
     const emailTaken = await User.checkEmail(theUserData);
-    // console.log(emailTaken);
 
     if (emailTaken === theUserData) {
         console.log(emailTaken);

@@ -25,26 +25,37 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Ticket ID number</th>
-        <th scope="col">Asigned Workers ID</th>
-        <th scope="col">Time Started</th>
+        <th scope="col">Ticket Id</th>
         <th scope="col">Ticket Description</th>
-        <th scope="col">Time ticket submitted</th>
+        <th scope="col">Details</th>
+        <th scope="col">Change Status</th>
       </tr>
     </thead>
     <tbody>
+      ${ pending
+        .filter(ticket => ticket.ticket_status === 1)
+        .map(ticket => `
+        <tr>
+          <td>${ticket.id}</td>
+          <td>${ticket.issue_desc}</td>
+          <td>
+              <form action="/details/${ticket.id}" method="GET">
+                <button type="submit" value="${ticket.id}" class="btn btn-info">Get Details</button>
+              </form>
+            </td>
+          <td>
+              <form action="/completedTickets/${ticket.id}" method="GET">
+                <button type="submit" value="${ticket.id}" class="btn btn-info">Completed</button>
+              </form>
   
-      <tr>
-        <td>${ticketId}</td>
-        <!-- <td>${ticket.all_tickets_id}</td> -->
-        <!-- <td>${ticket.users_id}</td> -->
-        <!-- <td>${ticket.time_started}</td> -->
-        <td>${ticketIssueDesc}</td>
-        <td>${ticketTime}</td>
-      </tr>
+          </td>
+        </tr>
+        `)
+        }
     </tbody>
   </table>
+
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

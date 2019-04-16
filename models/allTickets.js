@@ -10,15 +10,11 @@ class AllTickets {
 
     this.id = id;
     this.issueDesc = issue_desc;
-    // this.notes_id = notes_id;
-    // this.TIMESTAMP = TIMESTAMP;
-    // this.status 
   }
 
   static getAll() {
     return db.any(`select * from all_tickets`)
       .then((arrayOfTickets) => {
-        // console.log(arrayOfTickets);
         return arrayOfTickets
       });
   }
@@ -30,8 +26,8 @@ class AllTickets {
     const date = timestamp.getDate().toString();
     const year = timestamp.getFullYear().toString();
     const entireDate = `${realMonth}/ ${date}/ ${year}`
-    return db.none(`insert into all_tickets (issue_desc, time_posted)
-                  values ('${issue_desc}', '${entireDate}')`);
+    return db.none(`insert into all_tickets (issue_desc, time_posted, ticket_status)
+                  values ('${issue_desc}', '${entireDate}', 0)`);
   }
 
 
@@ -51,17 +47,6 @@ static getTicketInfo(id) {
   });
 }
 
-static moveToPending(allTicketsId, usersId) {
-  // const timestamp = new Date();
-  // const month = timestamp.getMonth() + 1;
-  // const realMonth = month.toString();
-  // const date = timestamp.getDate().toString();
-  // const year = timestamp.getFullYear().toString();
-  // const timeStarted = `${realMonth}/ ${date}/ ${year}`
-  return db.none(`INSERT INTO pending_tickets (all_tickets_id, users_id)
-  values ('${allTicketsId}', '${usersId}')`);
-}
-
 static moveToOpen(allTicketsId, usersId) {
   return db.none(`insert into open_tickets (all_tickets_id, users_id)
   values ('${allTicketsId}', '${usersId}')`);
@@ -77,11 +62,15 @@ static moveToOpen(allTicketsId, usersId) {
   }
 
   // CHANGE STATUS TO 'PENDING'
- static updateToPending(id){
-  return db.one('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
+
+ static async updateToPending(id){
+  return await db.none('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
   }
 
-  // return db.one('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id]
+  static async updateToCompleted(id){
+    return await db.none('UPDATE all_tickets SET ticket_status = 2 WHERE id = $1', [id])
+    }
+
 
   static getOpenTickets(ticket_status) {
     return db.any('select * from all_tickets where ticket_status = $1', [ticket_status])
@@ -91,19 +80,12 @@ static moveToOpen(allTicketsId, usersId) {
       });
   }
 
-  // static getTicketInfoByIdIfPending(id) {
-  //   return db.one(`select * from all_tickets a inner join pending_tickets p on a.id = p.all_tickets_id where id = ${id}`)
-  //   .then((ticketData) => {
-  //     return ticketData;
-  //   });
-  // }
-
-  // static getTicketInfoByIdIfClosed(id) {
-  //   return db.one(`select * from all_tickets a inner join closed_tickets c on a.id = c.all_tickets_id where id = ${id}`)
-  //   .then((ticketData) => {
-  //     return ticketData;
-  //   });
-  // }
+  static getTicketInfoByUserIdAndStatus(userId, ticket_status) {
+    return db.any('select * from all_tickets where users_id = $1 and ticket_status = $2', [userId, ticket_status])
+    .then((ticketData) => {
+      return ticketData;
+    });
+  }
 
 }
 
