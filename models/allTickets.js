@@ -1,9 +1,6 @@
 // Bring in the databse connection.
 const db = require("./conn");
-const bcrpyt = require("bcryptjs");
 
-// Need a User class.
-// Classes should start with an uppercase letter
 
 class AllTickets {
   constructor(id, issue_desc) {
@@ -35,15 +32,6 @@ class AllTickets {
                   values ('${issue_desc}', '${entireDate}', 0, null)`);
   }
 
-
-
-// static getTicketInfoByIssue(issueDesc) {
-//   return db.one('select * from all_tickets a inner join open_tickets o on a.id = o.all_tickets_id where a.issue_desc = $1', [issueDesc])
-//   .then((ticketData) => {
-//     return ticketData;
-//   });
-// }
-
 static getTicketInfo(id) {
   return db.one('select * from all_tickets t where t.id = $1', [parseInt(id)])
   .then((ticketData) => {
@@ -53,9 +41,8 @@ static getTicketInfo(id) {
 }
 
   // CHANGE STATUS TO 'PENDING'
-
- static async updateToPending(id){
-  return await db.none('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
+  static async updateToPending(id){
+    return await db.none('UPDATE all_tickets SET ticket_status = 1 WHERE id = $1', [id])
   }
 
   static async updateToCompleted(id){
@@ -79,12 +66,11 @@ static getTicketInfo(id) {
   }
 
   static getTicketPendingTimestamp() {
-  return db.any(`select p.*, a.issue_desc, a.time_posted from pending_tickets p inner join all_tickets a on p.all_tickets_id=a.id`)
-  .then(arrayOfPendingTicketsData => {
-    return arrayOfPendingTicketsData;
-  });
-}
-
+    return db.any(`select p.*, a.issue_desc, a.time_posted from pending_tickets p inner join all_tickets a on p.all_tickets_id=a.id`)
+    .then(arrayOfPendingTicketsData => {
+      return arrayOfPendingTicketsData;
+    });
+  }
 }
 
 module.exports = AllTickets;

@@ -7,9 +7,6 @@ const escapeHtml = require("../utils");
 // Classes should start with an uppercase letter
 class User {
   constructor(id, first_name, last_name, email, password) {
-    // In python, we say "self"
-    //In Javascript, we say "this"
-
     this.id = id;
     this.first_name = first_name;
     this.last_name = last_name;
@@ -20,11 +17,6 @@ class User {
     return db.result("delete from users where id=$1", [id]);
   }
 
-  setPassword(newPassword) {
-    const salt = bcrpyt.genSaltSync(10);
-    const hash = bcrpyt.hashSync(newPassword, salt);
-    this.password = hash;
-  }
   static hashPass(newPassword) {
     const salt = bcrpyt.genSaltSync(10);
     const hash = bcrpyt.hashSync(newPassword, salt);
@@ -41,35 +33,23 @@ class User {
     const aPassword = escapeHtml(userData.password);
     const hashed = User.hashPass(aPassword);
     return db
-      .one(
-        `
+      .one(`
         insert into users 
     (first_name, last_name, email, password) 
     values 
     ($1, $2, $3, $4)
-    returning id, first_name, last_name
-    `,
-        [
-          firstName,
-          lastName,
-          email,
-          hashed
-        ]
+    returning id, first_name, last_name`,
+        [firstName, lastName, email, hashed]
       )
       .then(data => {
         return data.id;
       });
-  }
-  
-
-  // "static" means that the function is something
-  // the class can do, but an instance cannot.
+    }
 
   static getById(id) {
     return db
       .one(`select * from users where id=${id}`)
       .then(userData => {
-        //You *must* use the `new` keyword when you call a JavaScript constuctor
         const userInstance = new User(
           userData.id,
           userData.first_name,
@@ -80,9 +60,9 @@ class User {
         return userInstance;
       })
       .catch(() => {
-        return null; //signal an invalid value
+        return null;
       });
-  }
+    }
   static getAll() {
     return db.any(`select * from users`).then(arrayOfUsers => {
       return arrayOfUsers.map(userData => {
@@ -98,29 +78,23 @@ class User {
     });
   }
   save() {
-    // use. result when you might want a report about
-    // how many rows got affected
     return db.result(
-      `update users set first_name='${this.first_name}', last_name='${
-      this.last_name
-      }', email='${this.email}', password='${this.password}' where id=${
+      `update users set first_name='${this.first_name}', last_name='${this.last_name}',
+      email='${this.email}', password='${this.password}' where id=${
       this.id
       } `
     );
   }
 
   checkPassword(aPassword) {
-    //const isCorrect = bcrypt.compareSync(aPassword, this.password);
     return bcrpyt.compareSync(aPassword, this.password);
   }
 
-
-  // setPassword(newPassword) {
-  //   const salt = bcrpyt.genSaltSync(10);
-  //   const hash = bcrpyt.hashSync(newPassword, salt);
-  //   this.password = hash;
-  // }
-
+  setPassword(newPassword) {
+    const salt = bcrpyt.genSaltSync(10);
+    const hash = bcrpyt.hashSync(newPassword, salt);
+    this.password = hash;
+  }
 
   static getByEmail(email) {
     return db
@@ -140,31 +114,14 @@ class User {
 
   static checkEmail(userData) {
     const aEmail = escapeHtml(userData.email);
-    return db.one(`select email from users where email=$1`, [aEmail])
+    return db.one(`select email from users where email=$1`, [aEmail]) // returns the email of user instance if one exists with that email
       .catch(() => {
-        return userData; //signals that email is not in database, invalid/nonexistant value
+        return userData; //signals that email is not in database so we can create new user
       });
   }
 
-
-  //   get tickets() {
-  //     return db
-  //       .any(`select * from tickets where user_id=${this.id}`)
-  //       .then(arrayOfReviewData => {
-  //         const arrayOfReviewInstances = [];
-  //         arrayOfReviewData.forEach(data => {
-  //           const newInstance = new Review(
-  //             data.id,
-  //             data.score,
-  //             data.content,
-  //             data.restaurant_id,
-  //             data.user_id
-  //           );
-  //           arrayOfReviewInstances.push(newInstance);
-  //         });
-  //         return arrayOfReviewInstances;
-  //       });
 }
+
 // async function demo() {
 //   const user = await User.getByEmail("am123@me.com");
 //   user.setPassword("waffles");
